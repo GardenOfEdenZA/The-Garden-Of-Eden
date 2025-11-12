@@ -1,24 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
+  <!-- META -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Garden Of Eden Cannabis Club</title>
+  <meta name="theme-color" content="#1a3a32" />
+  <meta name="description" content="Exclusive cannabis club in Cape Town. Premium strains, edibles, pre-rolls. Members only. 18+." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://garden-of-eden-cannabis-club.vercel.app" />
 
-  <!-- FAVICON & LOGO -->
+  <!-- TITLE -->
+  <title>The Garden Of Eden Cannabis Club | Premium THC | Cape Town</title>
+
+  <!-- FAVICON -->
   <link rel="icon" href="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" type="image/png">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png">
 
-  <!-- Open Graph -->
+  <!-- OPEN GRAPH -->
   <meta property="og:title" content="The Garden Of Eden Cannabis Club" />
-  <meta property="og:description" content="Where Bliss Meets Bud. Premium THC cannabis. 18+ only." />
+  <meta property="og:description" content="Premium THC. Members only. Cape Town." />
   <meta property="og:image" content="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" />
   <meta property="og:url" content="https://garden-of-eden-cannabis-club.vercel.app" />
   <meta property="og:type" content="website" />
 
-  <!-- Tailwind CDN -->
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Garden Of Eden Cannabis Club",
+    "url": "https://garden-of-eden-cannabis-club.vercel.app",
+    "logo": "https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "telephone": "+27812345678"
+    }
+  }
+  </script>
+
+  <!-- PWA MANIFEST -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- TAILWIND CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -32,296 +61,320 @@
             serif: ['"Playfair Display"', 'serif'],
             sans: ['Inter', 'sans-serif'],
           },
+          animation: {
+            'pulse-slow': 'pulse 3s infinite',
+          }
         },
       },
     };
   </script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Feather Icons -->
+  <!-- FEATHER ICONS -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <style>
-    :root {
-      --primary: #1a3a32;
-      --secondary: #d4af37;
-      --accent: #0f1e1a;
-      --muted: #f5f5f5;
-    }
-    body {
-      background: #f9f9f9;
-      font-family: 'Inter', sans-serif;
-      color: #333;
-    }
-    .hero {
-      background: linear-gradient(rgba(26,58,50,0.9), rgba(26,58,50,0.9)), url('https://images.unsplash.com/photo-1516205651411-a1f726d29620?q=80&w=1600') center/cover;
-      color: white;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
-    #age-verification {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-      display: flex; align-items: center; justify-content: center; z-index: 9999;
-    }
-    #age-verification-content {
-      background: white; border-radius: 1rem; padding: 2.5rem; max-width: 90%; text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-    .logo-img { height: 50px; width: auto; }
-    .hero-logo { height: 220px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-    .footer-logo { height: 100px; width: auto; }
-    .menu-card { background: white; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-    .btn-gold {
-      background: linear-gradient(135deg, #d4af37, #b8961e);
-      color: #1a1a1a; font-weight: 600; border-radius: 0.75rem;
-      padding: 0.75rem 1.75rem; transition: all 0.3s ease;
-    }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
-    .price { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-    .section-title { font-family: 'Playfair Display', serif; font-weight: 700; }
-    .product-img {
-      border-radius: 1rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-      object-fit: cover;
-    }
-    .product-img:hover {
-      transform: scale(1.02);
-    }
+  <!-- GOOGLE ANALYTICS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR-ID-HERE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YOUR-ID-HERE', { anonymize_ip: true });
+  </script>
 
-    /* WHATSAPP FLOATING BUTTON */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      z-index: 1000;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
+  <!-- CRITICAL CSS -->
+  <style>
+    :root { --primary: #1a3a32; --secondary: #d4af37; --accent: #0f1e1a; }
+    .dark { --primary: #0f1e1a; --secondary: #b8961e; }
+    body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; transition: background 0.3s; }
+    .dark body { background: #0f1e1a; color: #e0e0e0; }
+    .hero { background: linear-gradient(rgba(26,58,50,0.9), rgba(26,58,50,0.95)), url('https://images.unsplash.com/photo-1516205651411-a1f726d29620?auto=format&fit=crop&w=1600&q=80') center/cover; color: white; border-radius: 1rem; overflow: hidden; }
+    .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
+    .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+    @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; animation: pulse-slow 3s infinite; }
+    .dark .whatsapp-float { filter: brightness(1.1); }
   </style>
+
+  <!-- PRELOAD HERO IMAGE -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1516205651411-a1f726d29620?auto=format&fit=crop&w=1600&q=80">
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-50 dark:bg-accent transition-colors">
 
   <!-- AGE VERIFICATION -->
-  <div id="age-verification">
-    <div id="age-verification-content">
-      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-24 mx-auto mb-6">
-      <h2 class="text-3xl font-bold mb-3 text-primary">Members Only</h2>
-      <p class="mb-6 text-gray-700">You must be <strong>18 or older</strong> to enter.</p>
-      <div class="flex gap-4 justify-center">
-        <button id="verify-age" class="btn-gold text-lg">Enter Club</button>
-        <button id="exit-site" class="bg-gray-700 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg">Exit</button>
+  <div id="age-gate" class="fixed inset-0 bg-black/95 flex items-center justify-center z-[9999] p-4">
+    <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
+      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-20 mx-auto mb-6">
+      <h2 class="text-2xl font-bold text-primary mb-2">Members Only</h2>
+      <p class="text-gray-600 mb-6">Enter your birth year to continue:</p>
+      <input type="text" id="birth-year" placeholder="YYYY" class="w-full p-3 border rounded-lg text-center text-lg" maxlength="4">
+      <div class="flex gap-3 mt-4">
+        <button id="enter-btn" class="flex-1 btn-gold">Enter</button>
+        <button id="exit-btn" class="flex-1 bg-gray-700 text-white py-3 rounded-lg">Exit</button>
       </div>
     </div>
   </div>
 
   <!-- NAVBAR -->
-  <nav class="bg-primary text-white shadow-xl sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-3">
-        <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="logo-img">
-        <span class="text-xl font-bold hidden md:inline">The Garden Of Eden</span>
+  <nav class="bg-primary text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2">
+        <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-10">
+        <span class="font-bold hidden sm:inline">Garden Of Eden</span>
       </a>
-      <div class="flex items-center gap-8">
-        <a href="#menu" class="hover:text-secondary transition font-medium">Menu</a>
-        <a href="#join" class="hover:text-secondary transition font-medium">Join</a>
-        <button id="cart-btn" class="flex items-center gap-2 hover:text-secondary font-medium">
-          Cart <span id="cart-count" class="text-xs bg-secondary text-primary rounded-full w-6 h-6 flex items-center justify-center font-bold">0</span>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#menu" class="hover:text-secondary transition">Menu</a>
+        <a href="#join" class="hover:text-secondary transition">Join</a>
+        <button id="cart-btn" class="flex items-center gap-1 hover:text-secondary">
+          <i data-feather="shopping-cart" class="w-5 h-5"></i>
+          <span id="cart-count" class="text-xs bg-secondary text-primary rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span>
         </button>
+        <button id="dark-toggle" class="p-1"><i data-feather="moon" class="w-5 h-5"></i></button>
       </div>
+      <button id="mobile-menu-btn" class="md:hidden"><i data-feather="menu" class="w-6 h-6"></i></button>
     </div>
   </nav>
 
-  <main class="container mx-auto px-6 py-12">
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/90 z-[9998] hidden">
+    <div class="bg-white dark:bg-gray-900 h-full p-6 flex flex-col justify-center items-center gap-8 text-2xl">
+      <button id="close-mobile" class="absolute top-6 right-6"><i data-feather="x" class="w-8 h-8"></i></button>
+      <a href="#menu" class="text-primary font-bold">Menu</a>
+      <a href="#join" class="text-primary font-bold">Join</a>
+      <button id="mobile-cart-btn" class="text-primary font-bold">Cart (<span id="mobile-cart-count">0</span>)</button>
+      <button id="mobile-dark" class="text-primary">Dark Mode</button>
+    </div>
+  </div>
 
-    <!-- HERO — FINAL IMAGE ABOVE HEADLINE -->
-    <section class="hero rounded-2xl p-10 md:p-16 mb-16 text-center">
-      <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" alt="The Garden Of Eden Hero Logo" class="hero-logo mb-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-3 section-title">The Garden Of Eden</h1>
-      <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">Cannabis Club</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#join" class="btn-gold text-lg">Become a Member</a>
-        <a href="#menu" class="bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">View Menu</a>
-      </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero rounded-2xl p-8 md:p-16 mb-12 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+    <img src="https://i.postimg.cc/3xR5b3kM/garden-of-eden-logo-transparent.png" alt="Logo" class="h-48 mx-auto mb-6 relative z-10 drop-shadow-2xl">
+    <h1 class="text-5xl md:text-7xl font-bold mb-3 section-title relative z-10">The Garden Of Eden</h1>
+    <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90 relative z-10">Cannabis Club</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+      <a href="#join" class="btn-gold text-lg">Join Free</a>
+      <a href="#menu" class="bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition">View Menu</a>
+    </div>
+  </section>
+
+  <main class="container mx-auto px-4 py-8">
+
+    <!-- SEARCH & FILTER -->
+    <div class="mb-8 flex flex-col md:flex-row gap-4">
+      <input type="text" id="search" placeholder="Search strains, edibles..." class="flex-1 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-secondary">
+      <select id="filter" class="p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-secondary">
+        <option value="">All</option>
+        <option value="Strains">Strains</option>
+        <option value="Edibles">Edibles</option>
+        <option value="Pre-rolls">Pre-rolls</option>
+      </select>
+    </div>
 
     <!-- MENU -->
-    <section id="menu" class="mb-20">
+    <section id="menu" class="mb-16">
       <h2 class="text-4xl font-bold text-center mb-12 text-primary section-title">Members Menu</h2>
-      <div class="menu-card p-10 max-w-5xl mx-auto">
-
-        <!-- STRAINS -->
-        <div class="mb-12 pb-8 border-b border-gray-200">
-          <h3 class="text-2xl font-bold mb-6 text-primary">Strains: Tropical Skunk & Alpha Express</h3>
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100 text-center">
-              <img src="https://i.postimg.cc/rRCVR9G2/20251112-115445.jpg" alt="Tropical Skunk" class="w-full h-48 product-img mb-4">
-              <p class="text-lg font-semibold text-gray-800">10 grams</p>
-              <p class="price">R120</p>
-            </div>
-            <div class="bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-xl border border-amber-100 text-center">
-              <img src="https://i.postimg.cc/D4dv4cQS/20251112-115355.jpg" alt="Alpha Express" class="w-full h-48 product-img mb-4">
-              <p class="text-lg font-semibold text-gray-800">40 grams</p>
-              <p class="price">R450</p>
-              <p class="text-sm text-amber-700 font-medium">(Save R30)</p>
-            </div>
+      <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="skeleton" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        ${Array(6).fill().map(() => `
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div class="skeleton h-48 rounded-lg mb-4"></div>
+            <div class="skeleton h-6 rounded mb-2"></div>
+            <div class="skeleton h-5 rounded w-20"></div>
           </div>
-        </div>
-
-        <!-- PRE-ROLLED JOINTS -->
-        <div class="mb-12 pb-8 border-b border-gray-200">
-          <h3 class="text-2xl font-bold mb-6 text-primary">Pre-rolled Joints</h3>
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="space-y-6">
-              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100 text-center">
-                <img src="https://i.postimg.cc/2LFkLxdb/20251112-114115.jpg" alt="Stoner Days" class="w-full h-40 product-img mb-3">
-                <p class="text-lg font-semibold">10x Outdoor Pre-rolls</p>
-                <p class="price">R300</p>
-                <p class="text-xs italic text-gray-600">Stoner Days™ – Premium, hand-rolled</p>
-              </div>
-              <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100 text-center">
-                <img src="https://i.postimg.cc/LsYrTxjJ/20251112_114110.jpg" alt="5x Greenhouse Pre-rolls" class="w-full h-40 product-img mb-3">
-                <p class="text-lg font-semibold">5x Greenhouse Pre-rolls</p>
-                <p class="price">R250</p>
-                <p class="text-xs italic text-gray-600">Classic. Clean. Ready.</p>
-              </div>
-            </div>
-            <div class="hidden md:block"></div>
-          </div>
-        </div>
-
-        <!-- EDIBLES -->
-        <div class="mb-12">
-          <h3 class="text-2xl font-bold mb-6 text-primary">Edibles</h3>
-          <div class="space-y-8">
-
-            <!-- GUMMY BEARS -->
-            <div class="bg-gradient-to-br from-red-50 to-rose-50 p-6 rounded-xl border border-red-100 text-center">
-              <img src="https://i.postimg.cc/sG9jGJPB/20251112-114040.jpg" alt="5x Greenhouse Pre-rolls" class="w-full h-48 product-img mb-4">
-              <p class="text-lg font-semibold">Gummy Bears (10mg THC)</p>
-              <p class="text-sm text-gray-700">15x → R90 ‖ 30x → R150</p>
-            </div>
-
-            <!-- LEAF GUMMIES -->
-            <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-xl border border-orange-100">
-              <div class="flex flex-col md:flex-row gap-6 items-center">
-                <div class="flex-1">
-                  <p class="text-lg font-semibold">Leaf Gummies (50mg THC)</p>
-                  <p class="text-sm text-gray-700 mt-1">2x → R80 ‖ 5x → R200</p>
-                </div>
-                <div class="flex-1">
-                  <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Leaf Gummies" class="w-full h-48 product-img">
-                  <p class="text-xs text-center text-gray-500 mt-2 italic">Handcrafted. 50mg THC per leaf.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ORDER CTA -->
-        <div class="text-center mt-10">
-          <p class="text-sm text-gray-600 mb-4">Members: DM to order</p>
-          <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="inline-block btn-gold text-lg">
-            DM @GardenOfEdenZA
-          </a>
-        </div>
+        `).join('')}
       </div>
     </section>
 
     <!-- JOIN -->
-    <section id="join" class="bg-white rounded-2xl shadow-xl p-10 mb-16 max-w-3xl mx-auto text-center">
+    <section id="join" class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-10 mb-16 max-w-2xl mx-auto text-center">
       <h2 class="text-4xl font-bold mb-6 text-primary section-title">Join The Garden</h2>
-      <p class="text-lg text-gray-700 mb-8">Exclusive access. Member pricing. Private drops.</p>
-      <button class="btn-gold text-lg mb-4" onclick="joinFree()">Join Free</button>
-      <p class="text-sm text-gray-500">Premium Membership: R399/month – Coming Soon</p>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">Exclusive drops. Member pricing. Private events.</p>
+      <form id="join-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="flex flex-col gap-4 max-w-sm mx-auto">
+        <input type="email" name="email" placeholder="Your email" required class="p-3 rounded-lg border focus:ring-2 focus:ring-secondary">
+        <button type="submit" class="btn-gold text-lg">Join Free Now</button>
+      </form>
+      <p class="text-sm text-gray-500 mt-4">Premium: R399/month – Coming Q1 2026</p>
     </section>
 
   </main>
 
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/80 z-[9997] hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-2xl font-bold">Your Cart</h3>
+        <button id="close-cart"><i data-feather="x" class="w-6 h-6"></i></button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="mt-6 pt-6 border-t">
+        <p class="text-xl font-bold mb-4">Total: R<span id="cart-total">0</span></p>
+        <a id="checkout-wa" href="#" target="_blank" class="block btn-gold text-center">Checkout via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/27812345678?text=Hi" id="wa-float" class="whatsapp-float" target="_blank">
+    <i data-feather="message-circle"></i>
+  </a>
+
   <!-- FOOTER -->
-  <footer class="bg-accent text-white py-12">
-    <div class="container mx-auto px-6 text-center">
-      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="footer-logo mb-4">
+  <footer class="bg-accent text-white py-12 mt-20">
+    <div class="container mx-auto px-4 text-center">
+      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-20 mx-auto mb-4">
       <p class="text-xl font-bold">The Garden Of Eden</p>
       <p class="text-sm opacity-80 mb-4">Cannabis Club • Est. 2020</p>
       <div class="flex justify-center gap-6 mt-6">
-        <a href="https://facebook.com/GardenOfEdenZA" target="_blank"><i data-feather="facebook" class="w-5 h-5"></i></a>
-        <a href="https://x.com/GardenOfEdenZA" target="_blank"><i data-feather="twitter" class="w-5 h-5"></i></a>
-        <a href="https://instagram.com/GardenOfEdenZA" target="_blank"><i data-feather="instagram" class="w-5 h-5"></i></a>
-        <a href="https://tiktok.com/@GardenOfEdenZA" target="_blank"><i data-feather="youtube" class="w-5 h-5"></i></a>
+        <a href="https://facebook.com/GardenOfEdenZA" target="_blank" aria-label="Facebook"><i data-feather="facebook"></i></a>
+        <a href="https://instagram.com/GardenOfEdenZA" target="_blank" aria-label="Instagram"><i data-feather="instagram"></i></a>
       </div>
-      <p class="text-xs mt-6 opacity-70">Not sold to persons under 18. Private members club. #LegalizeIt</p>
+      <p class="text-xs mt-6 opacity-70">Not for persons under 18. Private members club. #LegalizeIt</p>
       <p class="text-xs">© <span id="year"></span>. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-  <a href="https://wa.me/27812345678?text=Hi,%20I'm%20interested%20in%20your%20menu!" 
-     class="whatsapp-float" 
-     target="_blank"
-     aria-label="Chat on WhatsApp">
-    <i data-feather="message-circle"></i>
-  </a>
-
-  <!-- SCRIPTS -->
+  <!-- PRODUCT DATA -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const products = [
+      { id: 1, name: "Tropical Skunk", price: 120, size: "10g", category: "Strains", desc: "Sativa-dominant. Pineapple + skunk. Uplifting & creative.", img: "https://i.postimg.cc/rRCVR9G2/20251112-115445.jpg" },
+      { id: 2, name: "Alpha Express", price: 450, size: "40g", category: "Strains", desc: "Indica. Citrus + pine. Deep relaxation & sleep aid.", img: "https://i.postimg.cc/D4dv4cQS/20251112-115355.jpg", save: 30 },
+      { id: 3, name: "Stoner Days™ Pre-rolls", price: 300, size: "10x", category: "Pre-rolls", desc: "Hand-rolled classics. Smooth burn. Festival ready.", img: "https://i.postimg.cc/2LFkLxdb/20251112-114115.jpg" },
+      { id: 4, name: "Gummy Bears", price: 90, size: "15x", category: "Edibles", desc: "10mg THC per bear. Discreet & fruity.", img: "https://i.postimg.cc/pXsH2Gx5/IMG-20251103-144536.jpg" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const menuGrid = document.getElementById('menu-grid');
+    const skeleton = document.getElementById('skeleton');
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById('filter');
+
+    // Render Menu
+    function renderMenu(items = products) {
+      menuGrid.innerHTML = items.map(p => `
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden product-card" data-category="${p.category}">
+          <img src="${p.img}" alt="${p.name}" class="w-full h-48 object-cover" loading="lazy">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">${p.name}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">${p.size} • ${p.category}</p>
+            <p class="text-2xl font-bold text-primary mt-2">R${p.price}${p.save ? ` <span class="text-sm text-green-600">Save R${p.save}</span>` : ''}</p>
+            <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/90 transition">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+      skeleton.classList.add('hidden');
+      menuGrid.classList.remove('hidden');
+    }
+
+    // Cart Functions
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+      gtag('event', 'add_to_cart', { items: [{ item_name: product.name, price: product.price }] });
+    }
+
+    function updateCart() {
+      const count = cart.length;
+      document.querySelectorAll('#cart-count, #mobile-cart-count').forEach(el => el.textContent = count);
+      renderCart();
+    }
+
+    function renderCart() {
+      const items = document.getElementById('cart-items');
+      const total = cart.reduce((sum, p) => sum + p.price, 0);
+      document.getElementById('cart-total').textContent = total;
+
+      if (cart.length === 0) {
+        items.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+        return;
+      }
+
+      items.innerHTML = cart.map((p, i) => `
+        <div class="flex justify-between items-center py-3 border-b">
+          <div>
+            <p class="font-medium">${p.name}</p>
+            <p class="text-sm text-gray-600">R${p.price}</p>
+          </div>
+          <button onclick="removeFromCart(${i})" class="text-red-500"><i data-feather="trash-2" class="w-5 h-5"></i></button>
+        </div>
+      `).join('');
+      feather.replace();
+
+      const waMsg = cart.map(p => `${p.name} - R${p.price}`).join('%0A');
+      document.getElementById('checkout-wa').href = `https://wa.me/27812345678?text=I%20want%20to%20order:%0A${waMsg}%0A%0ATotal: R${total}`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+
+    // Search & Filter
+    searchInput.addEventListener('input', filterMenu);
+    filterSelect.addEventListener('change', filterMenu);
+
+    function filterMenu() {
+      const query = searchInput.value.toLowerCase();
+      const category = filterSelect.value;
+      const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(query) && 
+        (!category || p.category === category)
+      );
+      renderMenu(filtered);
+    }
 
     // Age Gate
-    document.getElementById('verify-age').onclick = () => {
-      const birthYear = prompt("Enter your birth year:");
-      if (birthYear && new Date().getFullYear() - parseInt(birthYear) >= 18) {
-        document.getElementById('age-verification').remove();
+    const ageGate = document.getElementById('age-gate');
+    const birthInput = document.getElementById('birth-year');
+    document.getElementById('enter-btn').onclick = () => {
+      const year = parseInt(birthInput.value);
+      if (year && new Date().getFullYear() - year >= 18) {
+        ageGate.remove();
         localStorage.setItem('ageVerified', 'true');
       } else {
         alert("You must be 18+ to enter.");
-        window.location.href = "https://google.com";
       }
     };
-    document.getElementById('exit-site').onclick = () => window.location.href = "https://google.com";
+    document.getElementById('exit-btn').onclick = () => window.location.href = "https://google.com";
 
-    if (localStorage.getItem('ageVerified') === 'true') {
-      document.getElementById('age-verification').remove();
-    } else {
-      document.body.style.overflow = 'hidden';
+    if (localStorage.getItem('ageVerified') === 'true') ageGate.remove();
+
+    // Dark Mode
+    const darkToggle = document.getElementById('dark-toggle');
+    const mobileDark = document.getElementById('mobile-dark');
+    if (localStorage.getItem('dark') === 'true' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
     }
+    darkToggle.onclick = () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
+    };
 
-    // Cart
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
-    }
-    updateCartCount();
+    // Cart Modal
+    document.getElementById('cart-btn').onclick = () => document.getElementById('cart-modal').classList.remove('hidden');
+    document.getElementById('mobile-cart-btn').onclick = () => {
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('cart-modal').classList.remove('hidden');
+    };
+    document.getElementById('close-cart').onclick = () => document.getElementById('cart-modal').classList.add('hidden');
 
-    function joinFree() {
-      const email = prompt("Enter your email to join:");
-      if (email && email.includes('@')) {
-        alert("Welcome to the club!");
-      }
-    }
+    // Mobile Menu
+    document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.remove('hidden');
+    document.getElementById('close-mobile').onclick = () => document.getElementById('mobile-menu').classList.add('hidden');
 
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderMenu();
+    updateCart();
     feather.replace();
   </script>
 </body>
