@@ -20,7 +20,7 @@
   <!-- OPEN GRAPH -->
   <meta property="og:title" content="The Garden Of Eden Cannabis Club" />
   <meta property="og:description" content="Premium THC. Members only. Cape Town." />
-  <meta property="og:image" content="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" />
+  <meta property="og:image" content="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" />
   <meta property="og:url" content="https://garden-of-eden-cannabis-club.vercel.app" />
   <meta property="og:type" content="website" />
 
@@ -31,7 +31,7 @@
     "@type": "Organization",
     "name": "The Garden Of Eden Cannabis Club",
     "url": "https://garden-of-eden-cannabis-club.vercel.app",
-    "logo": "https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png",
+    "logo": "https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
@@ -98,7 +98,6 @@
     .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
     @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; animation: pulse-slow 3s infinite; }
-    .dark .whatsapp-float { filter: brightness(1.1); }
   </style>
 
   <!-- PRELOAD HERO IMAGE -->
@@ -107,10 +106,21 @@
 
 <body class="bg-gray-50 dark:bg-accent transition-colors">
 
+  <!-- TOP BANNER / LOGO -->
+  <div class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-[9999]">
+    <div class="container mx-auto px-4 py-2 flex justify-center">
+      <a href="#" class="block">
+        <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" 
+             alt="The Garden Of Eden Cannabis Club" 
+             class="h-16 md:h-20 w-auto object-contain transition-transform hover:scale-105">
+      </a>
+    </div>
+  </div>
+
   <!-- AGE VERIFICATION -->
   <div id="age-gate" class="fixed inset-0 bg-black/95 flex items-center justify-center z-[9999] p-4">
     <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
-      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-20 mx-auto mb-6">
+      <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" alt="Logo" class="h-20 mx-auto mb-6">
       <h2 class="text-2xl font-bold text-primary mb-2">Members Only</h2>
       <p class="text-gray-600 mb-6">Enter your birth year to continue:</p>
       <input type="text" id="birth-year" placeholder="YYYY" class="w-full p-3 border rounded-lg text-center text-lg" maxlength="4">
@@ -124,20 +134,19 @@
   <!-- NAVBAR -->
   <nav class="bg-primary text-white sticky top-0 z-50 shadow-lg">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-2">
-        <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-10">
-        <span class="font-bold hidden sm:inline">Garden Of Eden</span>
-      </a>
-      <div class="hidden md:flex items-center gap-6">
-        <a href="#menu" class="hover:text-secondary transition">Menu</a>
-        <a href="#join" class="hover:text-secondary transition">Join</a>
+      <div class="hidden sm:flex items-center gap-2">
+        <span class="font-bold">Garden Of Eden</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#menu" class="hover:text-secondary transition hidden md:block">Menu</a>
+        <a href="#join" class="hover:text-secondary transition hidden md:block">Join</a>
         <button id="cart-btn" class="flex items-center gap-1 hover:text-secondary">
           <i data-feather="shopping-cart" class="w-5 h-5"></i>
           <span id="cart-count" class="text-xs bg-secondary text-primary rounded-full w-5 h-5 flex items-center justify-center font-bold">0</span>
         </button>
         <button id="dark-toggle" class="p-1"><i data-feather="moon" class="w-5 h-5"></i></button>
+        <button id="mobile-menu-btn" class="md:hidden"><i data-feather="menu" class="w-6 h-6"></i></button>
       </div>
-      <button id="mobile-menu-btn" class="md:hidden"><i data-feather="menu" class="w-6 h-6"></i></button>
     </div>
   </nav>
 
@@ -181,7 +190,7 @@
     <section id="menu" class="mb-16">
       <h2 class="text-4xl font-bold text-center mb-12 text-primary section-title">Members Menu</h2>
       <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-      <div id="skeleton" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="skeleton" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
         ${Array(6).fill().map(() => `
           <div class="bg-white rounded-xl p-6 shadow-lg">
             <div class="skeleton h-48 rounded-lg mb-4"></div>
@@ -228,7 +237,7 @@
   <!-- FOOTER -->
   <footer class="bg-accent text-white py-12 mt-20">
     <div class="container mx-auto px-4 text-center">
-      <img src="https://i.postimg.cc/7Y8wZ2kL/garden-of-eden-logo-final.png" alt="Logo" class="h-20 mx-auto mb-4">
+      <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" alt="Logo" class="h-20 mx-auto mb-4">
       <p class="text-xl font-bold">The Garden Of Eden</p>
       <p class="text-sm opacity-80 mb-4">Cannabis Club • Est. 2020</p>
       <div class="flex justify-center gap-6 mt-6">
@@ -255,7 +264,6 @@
     const searchInput = document.getElementById('search');
     const filterSelect = document.getElementById('filter');
 
-    // Render Menu
     function renderMenu(items = products) {
       menuGrid.innerHTML = items.map(p => `
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden product-card" data-category="${p.category}">
@@ -272,7 +280,6 @@
       menuGrid.classList.remove('hidden');
     }
 
-    // Cart Functions
     function addToCart(id) {
       const product = products.find(p => p.id === id);
       cart.push(product);
@@ -318,7 +325,6 @@
       updateCart();
     }
 
-    // Search & Filter
     searchInput.addEventListener('input', filterMenu);
     filterSelect.addEventListener('change', filterMenu);
 
@@ -332,7 +338,6 @@
       renderMenu(filtered);
     }
 
-    // Age Gate
     const ageGate = document.getElementById('age-gate');
     const birthInput = document.getElementById('birth-year');
     document.getElementById('enter-btn').onclick = () => {
@@ -348,9 +353,7 @@
 
     if (localStorage.getItem('ageVerified') === 'true') ageGate.remove();
 
-    // Dark Mode
     const darkToggle = document.getElementById('dark-toggle');
-    const mobileDark = document.getElementById('mobile-dark');
     if (localStorage.getItem('dark') === 'true' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add('dark');
     }
@@ -359,7 +362,6 @@
       localStorage.setItem('dark', document.documentElement.classList.contains('dark'));
     };
 
-    // Cart Modal
     document.getElementById('cart-btn').onclick = () => document.getElementById('cart-modal').classList.remove('hidden');
     document.getElementById('mobile-cart-btn').onclick = () => {
       document.getElementById('mobile-menu').classList.add('hidden');
@@ -367,11 +369,9 @@
     };
     document.getElementById('close-cart').onclick = () => document.getElementById('cart-modal').classList.add('hidden');
 
-    // Mobile Menu
     document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.remove('hidden');
     document.getElementById('close-mobile').onclick = () => document.getElementById('mobile-menu').classList.add('hidden');
 
-    // Init
     document.getElementById('year').textContent = new Date().getFullYear();
     renderMenu();
     updateCart();
