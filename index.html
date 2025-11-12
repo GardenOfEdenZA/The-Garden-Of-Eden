@@ -259,7 +259,8 @@
       { id: 3, name: "Stoner Days™ Pre-rolls", price: 300, size: "10x", category: "Pre-rolls", desc: "Hand-rolled classics. Smooth burn. Festival ready.", img: "https://i.postimg.cc/2LFkLxdb/20251112-114115.jpg" },
       { id: 4, name: "Gummy Bears", price: 90, size: "15x", category: "Edibles", desc: "10mg THC per bear. Discreet & fruity.", img: "https://i.postimg.cc/pXsH2Gx5/IMG-20251103-144536.jpg" },
       { id: 5, name: "Leaf Gummies", price: 80, size: "2x", category: "Edibles", desc: "Natural leaf extract. 15mg THC per gummy. Relaxed vibes.", img: "https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" },
-      { id: 6, name: "Leaf Gummies", price: 200, size: "5x", category: "Edibles", desc: "Natural leaf extract. 15mg THC per gummy. Relaxed vibes.", img: "https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" }
+      { id: 6, name: "Leaf Gummies", price: 200, size: "5x", category: "Edibles", desc: "Natural leaf extract. 15mg THC per gummy. Relaxed vibes.", img: "https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" },
+      { id: 7, name: "Gummy Bears", price: 150, size: "30x", category: "Edibles", desc: "10mg THC per bear. Full pack. Party size.", img: "https://i.postimg.cc/7Y8n5vQj/gummy-bears-30x.jpg" }
     ];
 
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -337,7 +338,7 @@
       const category = filterSelect.value;
       const filtered = products.filter(p => 
         p.name.toLowerCase().includes(query) && 
-        (! isEmpty(category) || p.category === category)
+        (!category || p.category === category)
       );
       renderMenu(filtered);
     }
