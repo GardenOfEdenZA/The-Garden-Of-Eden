@@ -56,79 +56,34 @@
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <!-- Google Analytics - REPLACE G-YOUR-ID-HERE -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR-ID-HERE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
+    gtag('config', 'G-YOUR-ID-HERE');
   </script>
 
   <style>
-    :root {
-      --primary: #1a3a32;
-      --secondary: #d4af37;
-      --accent: #0f1e1a;
-      --muted: #f5f5f5;
-    }
-    body {
-      background: #f9f9f9;
-      font-family: 'Inter', sans-serif;
-      color: #333;
-    }
-    .hero {
-      background: 
-        linear-gradient(rgba(26,58,50,0.85), rgba(26,58,50,0.9)),
-        url('https://images.unsplash.com/photo-1516205651411-a1f726d29620?q=80&w=1600') center/cover,
-        url('https://i.postimg.cc/3xR5b3kM/garden-of-eden-logo-transparent.png') center/30% repeat;
-      background-blend-mode: overlay;
-      color: white;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
-    #age-verification, #product-modal, #mobile-menu {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-      display: flex; align-items: center; justify-content: center; z-index: 9999;
-    }
-    #age-verification-content, #modal-content {
-      background: white; border-radius: 1rem; padding: 2.5rem; max-width: 90%; text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
+    :root { --primary: #1a3a32; --secondary: #d4af37; --accent: #0f1e1a; --muted: #f5f5f5; }
+    body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #333; }
+    .hero { background: linear-gradient(rgba(26,58,50,0.85), rgba(26,58,50,0.9)), url('https://images.unsplash.com/photo-1516205651411-a1f726d29620?q=80&w=1600') center/cover, url('https://i.postimg.cc/3xR5b3kM/garden-of-eden-logo-transparent.png') center/30% repeat; background-blend-mode: overlay; color: white; border-radius: 1rem; overflow: hidden; }
+    #age-verification, #product-modal, #mobile-menu { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+    #age-verification-content, #modal-content { background: white; border-radius: 1rem; padding: 2.5rem; max-width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
     .logo-img { height: 50px; width: auto; }
     .hero-logo { height: 220px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-    .footer-logo { height: 100px; width: auto; }
     .menu-card { background: white; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-    .btn-gold {
-      background: linear-gradient(135deg, #d4af37, #b8961e);
-      color: #1a1a1a; font-weight: 600; border-radius: 0.75rem;
-      padding: 0.75rem 1.75rem; transition: all 0.3s ease;
-    }
+    .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s ease; }
     .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
     .price { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
     .section-title { font-family: 'Playfair Display', serif; font-weight: 700; }
-    .product-img {
-      border-radius: 1rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-      object-fit: cover;
-      loading: lazy;
-    }
+    .product-img { border-radius: 1rem; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.3s ease; object-fit: cover; loading: lazy; }
     .product-img:hover { transform: scale(1.02); }
-    .product-desc { font-size: 0.875rem; color: #555; margin-top: 0.5rem; line-height: 1.5; }
     .leaf-bg { background: url('https://i.postimg.cc/3xR5b3kM/garden-of-eden-logo-transparent.png') center/15% repeat; opacity: 0.05; }
-    .whatsapp-float {
-      position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white;
-      width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      z-index: 1000; transition: all 0.3s ease; animation: pulse 2s infinite;
-    }
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: all 0.3s ease; animation: pulse 2s infinite; }
     .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
     .hidden { display: none; }
   </style>
 </head>
@@ -151,9 +106,7 @@
   <!-- MOBILE MENU -->
   <div id="mobile-menu" class="hidden">
     <div class="bg-white p-6 rounded-xl max-w-xs w-full text-center">
-      <button id="close-menu" class="absolute top-4 right-4 text-gray-500">
-        <i data-feather="x" class="w-6 h-6"></i>
-      </button>
+      <button id="close-menu" class="absolute top-4 right-4 text-gray-500"><i data-feather="x" class="w-6 h-6"></i></button>
       <a href="#menu" class="block py-3 text-primary font-bold">Menu</a>
       <a href="#join" class="block py-3 text-primary font-bold">Join</a>
       <button id="mobile-cart" class="block py-3 text-primary font-bold">Cart (<span id="mobile-cart-count">0</span>)</button>
@@ -174,9 +127,7 @@
           Cart <span id="cart-count" class="text-xs bg-secondary text-primary rounded-full w-6 h-6 flex items-center justify-center font-bold">0</span>
         </button>
       </div>
-      <button id="menu-toggle" class="md:hidden">
-        <i data-feather="menu" class="w-6 h-6"></i>
-      </button>
+      <button id="menu-toggle" class="md:hidden"><i data-feather="menu" class="w-6 h-6"></i></button>
     </div>
   </nav>
 
@@ -204,7 +155,8 @@
 
         <!-- PRODUCTS -->
         <div class="md:col-span-2 space-y-8">
-          <!-- Strains -->
+
+          <!-- Tropical Skunk -->
           <div onclick="openModal('Tropical Skunk', '10g – R120', 'Sativa-dominant hybrid. Tropical pineapple + skunky earth. Uplifting, creative, daytime use.', 'https://i.postimg.cc/rRCVR9G2/20251112-115445.jpg')" class="cursor-pointer">
             <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-5 rounded-xl border border-green-100">
               <img src="https://i.postimg.cc/rRCVR9G2/20251112-115445.jpg" alt="Tropical Skunk" class="w-full h-40 product-img mb-3" loading="lazy">
@@ -212,7 +164,33 @@
               <p class="price">R120</p>
             </div>
           </div>
-          <!-- Add more with onclick -->
+
+          <!-- Alpha Express -->
+          <div onclick="openModal('Alpha Express', '40g – R450 (Save R30)', 'Premium indoor indica. Dense buds with sweet citrus and pine aroma. Deep relaxation, pain relief, sleep support.', 'https://i.postimg.cc/D4dv4cQS/20251112-115355.jpg')" class="cursor-pointer">
+            <div class="bg-gradient-to-br from-amber-50 to-yellow-50 p-5 rounded-xl border border-amber-100">
+              <img src="https://i.postimg.cc/D4dv4cQS/20251112-115355.jpg" alt="Alpha Express" class="w-full h-40 product-img mb-3" loading="lazy">
+              <p class="text-lg font-semibold">Alpha Express</p>
+              <p class="price">R450</p>
+              <p class="text-xs text-amber-700">(Save R30)</p>
+            </div>
+          </div>
+
+          <!-- Pre-rolls -->
+          <div onclick="openModal('Stoner Days™ Pre-rolls', '10x – R300', 'Hand-rolled outdoor classics. Smooth burn, rich flavor. Perfect for festivals or chilling.', 'https://i.postimg.cc/2LFkLxdb/20251112-114115.jpg')" class="cursor-pointer">
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-5 rounded-xl border border-blue-100">
+              <img src="https://i.postimg.cc/2LFkLxdb/20251112-114115.jpg" alt="Pre-rolls" class="w-full h-36 product-img mb-3" loading="lazy">
+              <p class="font-semibold text-sm">10x Pre-rolls – R300</p>
+            </div>
+          </div>
+
+          <!-- Gummies -->
+          <div onclick="openModal('Gummy Bears', '15x – R90', '10mg THC per bear. Chewy, fruity, discreet. Great for beginners.', 'https://i.postimg.cc/pXsH2Gx5/IMG-20251103-144536.jpg')" class="cursor-pointer">
+            <div class="bg-gradient-to-br from-red-50 to-rose-50 p-5 rounded-xl border border-red-100">
+              <img src="https://i.postimg.cc/pXsH2Gx5/IMG-20251103-144536.jpg" alt="Gummies" class="w-full h-36 product-img mb-3" loading="lazy">
+              <p class="font-semibold text-sm">15x Gummies – R90</p>
+            </div>
+          </div>
+
         </div>
 
         <!-- FEATURED -->
@@ -344,7 +322,6 @@
       const email = prompt("Enter your email to join free:");
       if (email && email.includes('@')) {
         alert("Welcome! Check your email for member perks.");
-        // In real app: send to backend
       }
     }
 
