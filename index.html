@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <!-- [ALL ORIGINAL HEAD CONTENT UNCHANGED] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a3a32" />
   <meta name="description" content="The Garden Of Eden Cannabis Club | Premium THC Strains, Pre-rolls & Edibles | Cape Town | 18+ Only" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://garden-of-eden-cannabis-club.vercel.app" />
+  
+  <!-- SECURITY -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;">
+
   <title>The Garden Of Eden | Premium THC | Cape Town</title>
 
-  <!-- FAVICON -->
+  <!-- FAVICON + PWA -->
   <link rel="icon" href="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" type="image/png">
   <link rel="apple-touch-icon" href="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png">
+  <link rel="manifest" href="/manifest.json">
 
-  <!-- OPEN GRAPH -->
-  <meta property="og:title" content="The Garden Of Eden Cannabis Club" />
-  <meta property="og:description" content="Where Bliss Meets Bud. Premium THC in Cape Town. Members Only. 18+." />
-  <meta property="og:image" content="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" />
-  <meta property="og:url" content="https://garden-of-eden-cannabis-club.vercel.app" />
-  <meta property="og:type" content="website" />
+  <!-- TAILWIND + FONTS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
@@ -36,457 +41,227 @@
     }
   }
   </script>
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.json">
-
-  <!-- TAILWIND -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1a3a32',
-            secondary: '#d4af37',
-            accent: '#0f1e1a',
-            whatsapp: '#25D366',
-          },
-          fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['Inter', 'sans-serif'],
-            handwritten: ['"Dancing Script"', 'cursive'],
-          },
-          animation: { 'pulse-slow': 'pulse 3s infinite', 'float': 'float 3s ease-in-out infinite' },
-          keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } } }
-        }
-      }
-    };
-  </script>
-
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
-  <!-- FEATHER ICONS -->
-  <script src="https://unpkg.com/feather-icons"></script>
-
-  <!-- CSS (FIXED STYLES) -->
-  <style>
-    body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
-    .dark body { background: #0f1e1a; color: #e0e0e0; }
-    .hero { background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; color: white; }
-    .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s; }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
-    .product-card { transition: all 0.3s ease; border-radius: 1rem; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .dark .product-card { background: #1a2a24; }
-    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 35px rgba(0,0,0,0.15); }
-    .whatsapp-float, .cart-float { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 50; animation: float 3s ease-in-out infinite; transition: all 0.3s; }
-    .whatsapp-float { background: #25D366; color: white; }
-    .cart-float { background: #1a3a32; color: white; bottom: 100px; }
-    .whatsapp-float:hover, .cart-float:hover { transform: scale(1.1); }
-    .cart-count { position: absolute; top: -8px; right: -8px; background: #d4af37; color: #1a1a1a; font-size: 12px; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .handwritten-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 4.5rem; line-height: 1; letter-spacing: -2px; }
-    @media (max-width: 640px) { .handwritten-title { font-size: 3rem; } }
-
-    /* MODALS */
-    #ageGate, #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,30,26,0.98); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
-    #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { display: none; overflow-y: auto; }
-    .age-modal, .cart-content, .modal-content { background: white; padding: 2rem; border-radius: 1.5rem; max-width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
-
-    /* QTY & OPTIONS */
-    .qty-btn { @apply w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg font-bold; }
-    .qty-display { @apply w-12 text-center font-bold text-lg; }
-    .option-btn { @apply px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200 cursor-pointer; }
-    .option-btn.selected { @apply bg-gradient-to-r from-secondary to-yellow-500 text-black border-secondary shadow-lg; }
-    .option-group { @apply flex gap-3 flex-wrap justify-center mt-4; }
-  </style>
 </head>
 
 <body class="min-h-screen transition-colors duration-300">
 
   <!-- AGE GATE -->
-  <div id="ageGate">
-    <div class="age-modal p-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">Members Only</h2>
+  <section id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle" class="fixed inset-0 bg-primary/98 flex items-center justify-center z-50">
+    <article class="age-modal p-8 text-center max-w-md w-full" role="document">
+      <h2 id="ageGateTitle" class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">Members Only</h2>
       <p class="text-lg mb-6">You must be 18 or older to enter The Garden Of Eden Cannabis Club.</p>
-      <button id="ageConfirm" class="btn-gold text-lg px-8 py-3">I am 18+ <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
+      <button id="ageConfirm" class="btn-gold text-lg px-8 py-3" aria-label="Confirm 18+">I am 18+ <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       <p class="mt-6 text-sm text-gray-600 dark:text-gray-400">Not of legal age? Please exit.</p>
-    </div>
-  </div>
+    </article>
+  </section>
 
   <!-- FLOATING BUTTONS -->
-  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." class="whatsapp-float fixed bottom-6 right-6 w-16 h-16 bg-whatsapp text-white rounded-full flex items-center justify-center text-3xl shadow-lg z-40 float" target="_blank" aria-label="Chat on WhatsApp">
     <i data-feather="message-circle"></i>
   </a>
-  <button class="cart-float" id="cartButton">
+  <button id="cartButton" class="cart-float fixed bottom-24 right-6 w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-3xl shadow-lg z-40 float" aria-label="Open cart">
     <i data-feather="shopping-bag"></i>
-    <span class="cart-count" id="cartCount">0</span>
+    <span id="cartCount" class="absolute top-0 right-0 bg-secondary text-black text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
   </button>
 
   <!-- HERO -->
-  <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32">
+  <header class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32 bg-gradient-to-b from-primary/95 to-primary">
     <div class="max-w-7xl mx-auto text-center">
-      <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
+      <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow text-5xl md:text-7xl">THE GARDEN OF EDEN</h1>
       <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">Where Bliss Meets Bud...</p>
       <div class="mt-8 space-x-4">
-        <button id="openMembership" class="btn-gold inline-block text-lg">
+        <button id="openMembership" class="btn-gold inline-block text-lg" aria-label="Join free membership">
           Join The Club (Free) <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i>
         </button>
         <a href="#menu" class="btn-gold inline-block text-lg">View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i></a>
       </div>
     </div>
-  </section>
+  </header>
 
   <!-- MENU -->
-  <section id="menu" class="py-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-white dark:bg-accent">
-    <div class="max-w-5xl mx-auto">
+  <main id="menu" class="py-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-white dark:bg-accent">
+    <div class="max-w-5xl mx-auto space-y-12">
 
       <!-- STRAINS -->
-      <div class="product-card mb-12 overflow-hidden">
-        <div class="bg-gradient-to-r from-primary to-accent p-6 text-white">
-          <h2 class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
-        </div>
+      <article class="product-card" aria-labelledby="strainsTitle">
+        <header class="bg-gradient-to-r from-primary to-accent p-6 text-white">
+          <h2 id="strainsTitle" class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
+        </header>
         <div class="p-8 space-y-6">
-          <div class="option-group" data-product-img="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg">
-            <div class="option-btn selected" data-name="Alpha Express (10g)" data-price="120">R120 <small class="block text-xs">10g</small></div>
-            <div class="option-btn" data-name="Alpha Express (40g)" data-price="450">R450 <small class="block text-xs">40g <span class="text-green-600">Save R30</span></small></div>
+          <div class="option-group" data-product-img="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" role="radiogroup" aria-label="Select strain size">
+            <button role="radio" aria-checked="true" class="option-btn selected" data-name="Alpha Express (10g)" data-price="120">R120 <small class="block text-xs">10g</small></button>
+            <button role="radio" aria-checked="false" class="option-btn" data-name="Alpha Express (40g)" data-price="450">R450 <small class="block text-xs">40g <span class="text-green-600">Save R30</span></small></button>
           </div>
-          <div class="flex items-center justify-center gap-3">
-            <button class="qty-btn minus">-</button>
-            <span class="qty-display">1</span>
-            <button class="qty-btn plus">+</button>
+          <div class="flex items-center justify-center gap-3" role="group" aria-label="Quantity">
+            <button class="qty-btn minus" aria-label="Decrease quantity">-</button>
+            <output class="qty-display" aria-live="polite">1</output>
+            <button class="qty-btn plus" aria-label="Increase quantity">+</button>
           </div>
           <button class="add-selected btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover" loading="lazy">
-        </div>
-      </div>
+        <figure class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 overflow-hidden">
+          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express premium cannabis strain" class="h-full w-full object-cover" loading="lazy">
+        </figure>
+      </article>
 
       <!-- PRE-ROLLS -->
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
-          <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <article class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
+          <header class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></header>
           <div class="p-6 space-y-4">
             <p class="text-lg font-medium">10x Outdoor Pre-rolls: <span class="text-xl font-bold text-primary">R300</span></p>
-            <div class="flex items-center justify-center gap-3">
-              <button class="qty-btn minus">-</button>
-              <span class="qty-display">1</span>
-              <button class="qty-btn plus">+</button>
+            <div class="flex items-center justify-center gap-3" role="group" aria-label="Quantity">
+              <button class="qty-btn minus" aria-label="Decrease">-</button>
+              <output class="qty-display" aria-live="polite">1</output>
+              <button class="qty-btn plus" aria-label="Increase">+</button>
             </div>
             <button class="add-to-cart-btn btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
           </div>
-          <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" alt="Stoner Days" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
-          </div>
-        </div>
-        <div class="product-card" data-product='{"name":"Greenhouse (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg"}'>
-          <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
+          <figure class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 overflow-hidden">
+            <img src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" alt="Stoner Days pre-rolled joints" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="product-card" data-product='{"name":"Greenhouse (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg"}'>
+          <header class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></header>
           <div class="p-6 space-y-4">
             <p class="text-lg font-medium">5x Greenhouse Pre-rolls: <span class="text-xl font-bold text-primary">R250</span></p>
-            <div class="flex items-center justify-center gap-3">
-              <button class="qty-btn minus">-</button>
-              <span class="qty-display">1</span>
-              <button class="qty-btn plus">+</button>
+            <div class="flex items-center justify-center gap-3" role="group" aria-label="Quantity">
+              <button class="qty-btn minus" aria-label="Decrease">-</button>
+              <output class="qty-display" aria-live="polite">1</output>
+              <button class="qty-btn plus" aria-label="Increase">+</button>
             </div>
             <button class="add-to-cart-btn btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
           </div>
-          <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" alt="Greenhouse" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
-          </div>
-        </div>
+          <figure class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 overflow-hidden">
+            <img src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" alt="Greenhouse pre-rolled joints" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
+          </figure>
+        </article>
       </div>
 
       <!-- EDIBLES -->
-      <div class="product-card mb-12">
-        <div class="bg-gradient-to-r from-rose-600 to-pink-600 p-6 text-white">
+      <article class="product-card">
+        <header class="bg-gradient-to-r from-rose-600 to-pink-600 p-6 text-white">
           <h2 class="text-3xl md:text-4xl font-serif font-bold">Edibles</h2>
-        </div>
+        </header>
         <div class="p-8 space-y-8">
           <div>
             <h3 class="text-xl font-bold mb-3">Gummy Bears (10mg THC)</h3>
-            <div class="option-group" data-product-img="https://i.postimg.cc/pr3p7GpB/20251112-114040.jpg">
-              <div class="option-btn selected" data-name="Gummy Bears (15x)" data-price="90">15x R90</div>
-              <div class="option-btn" data-name="Gummy Bears (30x)" data-price="150">30x R150</div>
+            <div class="option-group" data-product-img="https://i.postimg.cc/pr3p7GpB/20251112-114040.jpg" role="radiogroup" aria-label="Select gummy size">
+              <button role="radio" aria-checked="true" class="option-btn selected" data-name="Gummy Bears (15x)" data-price="90">15x R90</button>
+              <button role="radio" aria-checked="false" class="option-btn" data-name="Gummy Bears (30x)" data-price="150">30x R150</button>
             </div>
           </div>
           <div>
             <h3 class="text-xl font-bold mb-3">Leaf Gummies (50mg THC)</h3>
-            <div class="option-group" data-product-img="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg">
-              <div class="option-btn selected" data-name="Leaf Gummies (2x)" data-price="80">2x R80</div>
-              <div class="option-btn" data-name="Leaf Gummies (5x)" data-price="200">5x R200</div>
+            <div class="option-group" data-product-img="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" role="radiogroup" aria-label="Select leaf gummy size">
+              <button role="radio" aria-checked="true" class="option-btn selected" data-name="Leaf Gummies (2x)" data-price="80">2x R80</button>
+              <button role="radio" aria-checked="false" class="option-btn" data-name="Leaf Gummies (5x)" data-price="200">5x R200</button>
             </div>
           </div>
-          <div class="flex items-center justify-center gap-3">
-            <button class="qty-btn minus">-</button>
-            <span class="qty-display">1</span>
-            <button class="qty-btn plus">+</button>
+          <div class="flex items-center justify-center gap-3" role="group" aria-label="Quantity">
+            <button class="qty-btn minus" aria-label="Decrease">-</button>
+            <output class="qty-display" aria-live="polite">1</output>
+            <button class="qty-btn plus" aria-label="Increase">+</button>
           </div>
           <button class="add-selected-edibles btn-gold w-full py-3 text-lg">Add Selected to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Edibles" class="h-full w-full object-cover" loading="lazy">
-        </div>
-      </div>
+        <figure class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 overflow-hidden">
+          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="THC edibles: gummies" class="h-full w-full object-cover" loading="lazy">
+        </figure>
+      </article>
 
-      <!-- CONTACT & AGE WARNING -->
-      <div class="text-center py-12">
+      <!-- CONTACT -->
+      <section class="text-center py-12">
         <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
-          <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition"><i data-feather="instagram"></i></a>
-          <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition"><i data-feather="facebook"></i></a>
-          <a href="https://x.com/GardenOfEdenZA" target="_blank" class="text-black dark:text-white hover:scale-110 transition"><i data-feather="twitter"></i></a>
-          <a href="https://wa.me/27812345678" target="_blank" class="text-whatsapp hover:scale-110 transition"><i data-feather="message-circle"></i></a>
+          <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition" aria-label="Facebook"><i data-feather="facebook"></i></a>
+          <a href="https://x.com/GardenOfEdenZA" target="_blank" class="text-black dark:text-white hover:scale-110 transition" aria-label="X (Twitter)"><i data-feather="twitter"></i></a>
+          <a href="https://wa.me/27812345678" target="_blank" class="text-whatsapp hover:scale-110 transition" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
         </div>
-      </div>
-      <div class="text-center py-8 border-t border-gray-300 dark:border-gray-700">
-        <p class="text-sm uppercase tracking-widest text-gray-600 dark:text-gray-400">Not Sold To Persons Under The Age Of 18. #LegalizeIt</p>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- CART PAGE -->
-  <div id="cartPage">
-    <div class="cart-content">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-serif font-bold text-primary">Your Order</h2>
-        <button id="closeCart" class="text-2xl">×</button>
-      </div>
-      <div id="cartItems"></div>
-      <div class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600 space-y-2">
+      <!-- AGE WARNING -->
+      <footer class="text-center py-8 border-t border-gray-300 dark:border-gray-700">
+        <p class="text-sm uppercase tracking-widest text-gray-600 dark:text-gray-400">Not Sold To Persons Under The Age Of 18. #LegalizeIt</p>
+      </footer>
+    </div>
+  </main>
+
+  <!-- CART MODAL -->
+  <dialog id="cartPage" class="fixed inset-0 bg-primary/98 flex items-center justify-center z-50 p-4" aria-labelledby="cartTitle" aria-modal="true">
+    <article class="cart-content bg-white dark:bg-[#1a2a24] p-6 rounded-2xl max-w-lg w-full shadow-2xl">
+      <header class="flex justify-between items-center mb-6">
+        <h2 id="cartTitle" class="text-3xl font-serif font-bold text-primary">Your Order</h2>
+        <button id="closeCart" aria-label="Close cart" class="text-2xl">×</button>
+      </header>
+      <div id="cartItems" aria-live="polite"></div>
+      <footer class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600 space-y-2">
         <div class="flex justify-between text-lg"><span>Subtotal:</span><span id="subtotal">R0</span></div>
         <div class="flex justify-between text-lg"><span>Delivery:</span><span id="deliveryFee">—</span></div>
         <div class="flex justify-between text-xl font-bold"><span>Total:</span><span id="cartTotal">R0</span></div>
         <button id="openDelivery" class="btn-gold w-full mt-4 text-lg py-3">Set Delivery <i data-feather="truck" class="inline w-5 h-5 ml-1"></i></button>
         <button id="checkoutBtn" class="btn-gold w-full mt-2 text-lg py-3">Send via WhatsApp <i data-feather="send" class="inline w-5 h-5 ml-1"></i></button>
-      </div>
-    </div>
-  </div>
+      </footer>
+    </article>
+  </dialog>
 
   <!-- DELIVERY MODAL -->
-  <div id="deliveryModal">
-    <div class="modal-content">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-serif font-bold text-primary">Delivery Options</h2>
-        <button id="closeDelivery" class="text-2xl">×</button>
-      </div>
+  <dialog id="deliveryModal" class="fixed inset-0 bg-primary/98 flex items-center justify-center z-50 p-4" aria-labelledby="deliveryTitle" aria-modal="true">
+    <article class="modal-content bg-white dark:bg-[#1a2a24] p-6 rounded-2xl max-w-md w-full shadow-2xl">
+      <header class="flex justify-between items-center mb-6">
+        <h2 id="deliveryTitle" class="text-3xl font-serif font-bold text-primary">Delivery Options</h2>
+        <button id="closeDelivery" aria-label="Close" class="text-2xl">×</button>
+      </header>
       <div class="space-y-4">
-        <div class="option-group">
-          <div class="option-btn selected" data-type="Local (Cape Town)" data-fee="150">Local — R150</div>
-          <div class="option-btn" data-type="Nationwide" data-fee="250">Nationwide — R250</div>
+        <div class="option-group" role="radiogroup" aria-label="Delivery type">
+          <button role="radio" aria-checked="true" class="option-btn selected" data-type="Local (Cape Town)" data-fee="150">Local — R150</button>
+          <button role="radio" aria-checked="false" class="option-btn" data-type="Nationwide" data-fee="250">Nationwide — R250</button>
         </div>
-        <input type="text" id="deliveryAddress" placeholder="Enter full delivery address" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800" required>
+        <input type="text" id="deliveryAddress" placeholder="Enter full delivery address" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800" required aria-label="Delivery address">
         <button id="confirmDelivery" class="btn-gold w-full py-3 text-lg">Confirm <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       </div>
-    </div>
-  </div>
+    </article>
+  </dialog>
 
-  <!-- MEMBERSHIP MODALS (MINIMIZED) -->
-  <div id="membershipModal" style="display:none">
-    <div class="modal-content">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-serif font-bold text-primary">Join The Club — Free</h2>
-        <button id="closeMembership" class="text-2xl">×</button>
-      </div>
+  <!-- MEMBERSHIP MODAL -->
+  <dialog id="membershipModal" class="fixed inset-0 bg-primary/98 flex items-center justify-center z-50 p-4" aria-labelledby="membershipTitle" aria-modal="true">
+    <article class="modal-content bg-white dark:bg-[#1a2a24] p-6 rounded-2xl max-w-md w-full shadow-2xl">
+      <header class="flex justify-between items-center mb-6">
+        <h2 id="membershipTitle" class="text-3xl font-serif font-bold text-primary">Join The Club — Free</h2>
+        <button id="closeMembership" aria-label="Close" class="text-2xl">×</button>
+      </header>
       <form id="membershipForm" class="space-y-4">
         <input type="text" name="Full Name" placeholder="Full Name" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="tel" name="Phone Number" placeholder="Phone Number" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="email" name="Email Address" placeholder="Email Address" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <button type="submit" class="btn-gold w-full py-3 text-lg">Join Free <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       </form>
-    </div>
-  </div>
+    </article>
+  </dialog>
 
-  <div id="exclusiveModal" style="display:none">
-    <div class="modal-content">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-serif font-bold text-primary">Upgrade to Exclusive</h2>
-        <button id="closeExclusive" class="text-2xl">×</button>
-      </div>
+  <!-- EXCLUSIVE MODAL -->
+  <dialog id="exclusiveModal" class="fixed inset-0 bg-primary/98 flex items-center justify-center z-50 p-4" aria-labelledby="exclusiveTitle" aria-modal="true">
+    <article class="modal-content bg-white dark:bg-[#1a2a24] p-6 rounded-2xl max-w-md w-full shadow-2xl">
+      <header class="flex justify-between items-center mb-6">
+        <h2 id="exclusiveTitle" class="text-3xl font-serif font-bold text-primary">Upgrade to Exclusive</h2>
+        <button id="closeExclusive" aria-label="Close" class="text-2xl">×</button>
+      </header>
       <p class="mb-4">VIP perks: early access, discounts, events.</p>
       <div class="bg-gradient-to-r from-secondary to-yellow-500 p-4 rounded-lg text-center text-black font-bold mb-4">R150/month or R1500/year</div>
       <button id="upgradeBtn" class="btn-gold w-full py-3 text-lg">Upgrade Now <i data-feather="star" class="inline w-5 h-5 ml-1"></i></button>
       <p class="mt-4 text-sm text-center"><a href="#" id="skipUpgrade" class="text-primary underline">No thanks</a></p>
-    </div>
-  </div>
+    </article>
+  </dialog>
 
   <!-- DARK MODE -->
-  <button id="darkModeToggle" class="fixed top-6 right-6 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg">
+  <button id="darkModeToggle" class="fixed top-6 right-6 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg" aria-label="Toggle dark mode">
     <i data-feather="moon" class="w-6 h-6 hidden dark:inline"></i>
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
-  <!-- SCRIPT — FULLY FIXED & TESTED -->
-  <script>
-    feather.replace();
-
-    // STATE
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let delivery = JSON.parse(localStorage.getItem('delivery')) || { type: '', fee: 0, address: '' };
-
-    // ELEMENTS
-    const cartCount = document.getElementById('cartCount');
-    const cartPage = document.getElementById('cartPage');
-    const cartItems = document.getElementById('cartItems');
-    const subtotalEl = document.getElementById('subtotal');
-    const deliveryFeeEl = document.getElementById('deliveryFee');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const cartButton = document.getElementById('cartButton');
-    const closeCart = document.getElementById('closeCart');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const openDelivery = document.getElementById('openDelivery');
-    const deliveryModal = document.getElementById('deliveryModal');
-    const closeDelivery = document.getElementById('closeDelivery');
-    const confirmDelivery = document.getElementById('confirmDelivery');
-    const deliveryAddress = document.getElementById('deliveryAddress');
-
-    // MEMBERSHIP
-    const isMember = () => localStorage.getItem('member') === 'true';
-    document.getElementById('ageConfirm').onclick = () => {
-      document.getElementById('ageGate').style.display = 'none';
-      localStorage.setItem('ageVerified', 'true');
-      if (!isMember()) document.getElementById('membershipModal').style.display = 'block';
-    };
-    if (localStorage.getItem('ageVerified') === 'true') document.getElementById('ageGate').style.display = 'none';
-
-    document.getElementById('membershipForm').onsubmit = (e) => {
-      e.preventDefault();
-      const fd = new FormData(e.target);
-      localStorage.setItem('member', 'true');
-      localStorage.setItem('memberName', fd.get('Full Name'));
-      document.getElementById('membershipModal').style.display = 'none';
-      document.getElementById('exclusiveModal').style.display = 'block';
-    };
-
-    // QUANTITY SELECTORS
-    document.querySelectorAll('.product-card').forEach(card => {
-      const minus = card.querySelector('.minus');
-      const plus = card.querySelector('.plus');
-      const display = card.querySelector('.qty-display');
-      if (minus && plus && display) {
-        minus.onclick = () => display.textContent = Math.max(1, parseInt(display.textContent) - 1);
-        plus.onclick = () => display.textContent = parseInt(display.textContent) + 1;
-      }
-    });
-
-    // OPTION SELECTION
-    document.querySelectorAll('.option-group').forEach(group => {
-      group.querySelectorAll('.option-btn').forEach(btn => {
-        btn.onclick = () => {
-          group.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-          btn.classList.add('selected');
-        };
-      });
-    });
-
-    // ADD TO CART
-    document.querySelectorAll('.add-selected, .add-to-cart-btn, .add-selected-edibles').forEach(btn => {
-      btn.onclick = () => {
-        if (!isMember()) { alert("Join free first!"); document.getElementById('membershipModal').style.display = 'block'; return; }
-
-        const card = btn.closest('.product-card');
-        const qty = parseInt(card.querySelector('.qty-display').textContent);
-
-        if (btn.classList.contains('add-selected')) {
-          const group = card.querySelector('.option-group');
-          const selected = group.querySelector('.option-btn.selected');
-          const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
-          addToCart(item);
-        } else if (btn.classList.contains('add-to-cart-btn')) {
-          const data = JSON.parse(card.dataset.product);
-          addToCart({ ...data, qty });
-        } else if (btn.classList.contains('add-selected-edibles')) {
-          card.querySelectorAll('.option-group').forEach(group => {
-            const selected = group.querySelector('.option-btn.selected');
-            if (selected) {
-              const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
-              addToCart(item);
-            }
-          });
-        }
-      };
-    });
-
-    function addToCart(newItem) {
-      const existing = cart.find(p => p.name === newItem.name);
-      if (existing) existing.qty += newItem.qty;
-      else cart.push(newItem);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartUI();
-    }
-
-    // CART UI
-    function updateCartUI() {
-      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-      const total = subtotal + delivery.fee;
-      cartCount.textContent = cart.reduce((s, i) => s + i.qty, 0);
-      subtotalEl.textContent = `R${subtotal}`;
-      deliveryFeeEl.textContent = delivery.fee ? `R${delivery.fee}` : '—';
-      cartTotalEl.textContent = `R${total}`;
-
-      cartItems.innerHTML = cart.length ? cart.map((item, i) => `
-        <div class="flex items-center gap-4 py-4 border-b dark:border-gray-600">
-          <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
-          <div class="flex-1">
-            <h4 class="font-medium">${item.name}</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-400">R${item.price} × ${item.qty}</p>
-          </div>
-          <button onclick="cart.splice(${i},1); localStorage.setItem('cart', JSON.stringify(cart)); updateCartUI();" class="text-red-600"><i data-feather="trash-2" class="w-5 h-5"></i></button>
-        </div>
-      `).join('') : '<p class="text-center text-gray-500 py-8">Your cart is empty.</p>';
-      feather.replace();
-    }
-
-    // DELIVERY
-    openDelivery.onclick = () => deliveryModal.style.display = 'block';
-    closeDelivery.onclick = () => deliveryModal.style.display = 'none';
-    confirmDelivery.onclick = () => {
-      const selected = deliveryModal.querySelector('.option-btn.selected');
-      const address = deliveryAddress.value.trim();
-      if (!address) return alert("Enter address");
-      delivery = { type: selected.dataset.type, fee: parseInt(selected.dataset.fee), address };
-      localStorage.setItem('delivery', JSON.stringify(delivery));
-      deliveryModal.style.display = 'none';
-      updateCartUI();
-    };
-    deliveryAddress.value = delivery.address;
-
-    // CHECKOUT
-    checkoutBtn.onclick = () => {
-      if (!delivery.address) return openDelivery.click();
-      const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
-      const subtotal = cart.reduce((s, p) => s + p.price * p.qty, 0);
-      const msg = `Order:%0A${summary}%0A%0ASubtotal: R${subtotal}%0ADelivery (${delivery.type}): R${delivery.fee}%0ATotal: R${subtotal + delivery.fee}%0A%0AName: ${localStorage.getItem('memberName')}%0AAddress: ${delivery.address}`;
-      window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-    };
-
-    // CART OPEN
-    cartButton.onclick = () => {
-      if (!isMember()) { alert("Join first!"); document.getElementById('membershipModal').style.display = 'block'; }
-      else { cartPage.style.display = 'block'; updateCartUI(); }
-    };
-    closeCart.onclick = () => cartPage.style.display = 'none';
-
-    // DARK MODE
-    const dm = document.getElementById('darkModeToggle');
-    dm.onclick = () => {
-      document.documentElement.classList.toggle('dark');
-      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    };
-    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    }
-
-    // CLOSE MODALS
-    window.onclick = (e) => {
-      if ([cartPage, document.getElementById('membershipModal'), document.getElementById('exclusiveModal'), deliveryModal].includes(e.target)) {
-        e.target.style.display = 'none';
-      }
-    };
-
-    updateCartUI();
-  </script>
+  <!-- JS -->
+  <script src="js/script.js" defer></script>
 </body>
 </html>
