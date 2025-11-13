@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <!-- [ALL ORIGINAL HEAD CONTENT UNCHANGED] -->
+  <!-- [ALL ORIGINAL HEAD CONTENT UNCHANGED - FULLY PRESERVED] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a3a32" />
@@ -71,7 +71,7 @@
   <!-- FEATHER ICONS -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- CSS (UNCHANGED + NEW MODAL STYLES) -->
+  <!-- CSS (UNCHANGED + NEW OPTION STYLES) -->
   <style>
     body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
     .dark body { background: #0f1e1a; color: #e0e0e0; }
@@ -94,6 +94,16 @@
     #cartPage, #membershipModal, #exclusiveModal { display: none; overflow-y: auto; }
     .age-modal, .cart-content, .modal-content { background: white; padding: 2rem; border-radius: 1.5rem; max-width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
     .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
+
+    /* NEW: OPTION BUTTONS */
+    .option-btn {
+      @apply px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200 cursor-pointer;
+    }
+    .option-btn:hover { @'i' @apply scale-105; }
+    .option-btn.selected {
+      @apply bg-gradient-to-r from-secondary to-yellow-500 text-black border-secondary shadow-lg;
+    }
+    .option-group { @apply flex gap-3 flex-wrap justify-center mt-4; }
   </style>
 </head>
 
@@ -118,7 +128,7 @@
     <span class="cart-count" id="cartCount">0</span>
   </button>
 
-  <!-- HERO + JOIN CLUB BUTTON -->
+  <!-- HERO + JOIN CLUB -->
   <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32">
     <div class="max-w-7xl mx-auto text-center">
       <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
@@ -132,28 +142,32 @@
     </div>
   </section>
 
-  <!-- MENU (UNCHANGED) -->
+  <!-- MENU WITH CLICKABLE OPTIONS -->
   <section id="menu" class="py-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-white dark:bg-accent">
     <div class="max-w-5xl mx-auto">
 
-      <!-- Strains -->
-      <div class="product-card mb-12 overflow-hidden" data-product='{"name":"Alpha Express (10g)", "price":120, "img":"https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg"}'>
+      <!-- STRAINS: SELECTABLE 10g OR 40g -->
+      <div class="product-card mb-12 overflow-hidden">
         <div class="bg-gradient-to-r from-primary to-accent p-6 text-white">
           <h2 class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
-13        </div>
-        <div class="p-8 space-y-4">
-          <div class="flex justify-between text-lg md:text-xl font-semibold"><span>R120 for 10grams</span></div>
-          <div class="flex justify-between text-lg md:text-xl font-semibold text-green-600">
-            <span>R450 for 40grams</span>
-            <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">save R30</span>
+        </div>
+        <div class="p-8 space-y-6">
+          <div class="option-group" data-product-img="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg">
+            <div class="option-btn" data-name="Alpha Express (10g)" data-price="120">
+              R120 <small class="block text-xs">10g</small>
+            </div>
+            <div class="option-btn" data-name="Alpha Express (40g)" data-price="450">
+              R450 <small class="block text-xs">40g <span class="text-green-600">Save R30</span></small>
+            </div>
           </div>
+          <button class="add-selected btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart" loading="lazy">
+          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover" loading="lazy">
         </div>
       </div>
 
-      <!-- Pre-rolls -->
+      <!-- PRE-ROLLS (UNCHANGED) -->
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
           <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
@@ -171,24 +185,38 @@
         </div>
       </div>
 
-      <!-- Edibles -->
-      <div class="product-card mb-12" data-product='{"name":"Leaf Gummies (5x)", "price":200, "img":"https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg"}'>
+      <!-- EDIBLES: SELECTABLE GUMMIES -->
+      <div class="product-card mb-12">
         <div class="bg-gradient-to-r from-rose-600 to-pink-600 p-6 text-white">
           <h2 class="text-3xl md:text-4xl font-serif font-bold">Edibles</h2>
         </div>
-        <div class="p-8 space-y-5 text-lg">
-          <div class="flex justify-between"><span>Gummy bears (10mg):</span><div class="text-right"><span class="block">15x <strong>R90</strong></span><span class="block text-sm">||</span><span class="block">30x <strong>R150</strong></span></div></div>
-          <hr class="border-dashed border-gray-300 dark:border-gray-600">
-          <div class="flex justify-between"><span>Leaf gummies (50mg):</span><div class="text-right"><span class="block">2x <strong>R80</strong></span><span class="block text-sm">||</span><span class="block">5x <strong>R200</strong></span></div></div>
+        <div class="p-8 space-y-8">
+          <!-- Gummy Bears -->
+          <div>
+            <h3 class="text-xl font-bold mb-3">Gummy Bears (10mg THC)</h3>
+            <div class="option-group" data-product-img="https://i.postimg.cc/pr3p7GpB/20251112-114040.jpg">
+              <div class="option-btn" data-name="Gummy Bears (15x)" data-price="90">15x R90</div>
+              <div class="option-btn" data-name="Gummy Bears (30x)" data-price="150">30x R150</div>
+            </div>
+          </div>
+          <!-- Leaf Gummies -->
+          <div>
+            <h3 class="text-xl font-bold mb-3">Leaf Gummies (50mg THC)</h3>
+            <div class="option-group" data-product-img="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg">
+              <div class="option-btn" data-name="Leaf Gummies (2x)" data-price="80">2x R80</div>
+              <div class="option-btn" data-name="Leaf Gummies (5x)" data-price="200">5x R200</div>
+            </div>
+          </div>
+          <button class="add-selected-edibles btn-gold w-full py-3 text-lg">Add Selected to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Leaf Gummies" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart" loading="lazy">
+          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Edibles" class="h-full w-full object-cover" loading="lazy">
         </div>
       </div>
 
       <!-- CONTACT -->
       <div class="text-center py-12">
-        <h3 class="text-3xl font-serif font-bold text-primary mb--bold mb-6">@GardenOfEdenZA</h3>
+        <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
           <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition"><i data-feather="instagram"></i></a>
           <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition"><i data-feather="facebook"></i></a>
@@ -204,7 +232,7 @@
     </div>
   </section>
 
-  <!-- CART PAGE (UNCHANGED) -->
+  <!-- CART PAGE, MODALS (UNCHANGED) -->
   <div id="cartPage">
     <div class="cart-content">
       <div class="flex justify-between items-center mb-6">
@@ -219,7 +247,6 @@
     </div>
   </div>
 
-  <!-- FREE MEMBERSHIP MODAL (REQUIRED) -->
   <div id="membershipModal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
@@ -236,7 +263,6 @@
     </div>
   </div>
 
-  <!-- EXCLUSIVE MEMBERSHIP MODAL (OPTIONAL UPGRADE) -->
   <div id="exclusiveModal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
@@ -258,51 +284,40 @@
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
-  <!-- SCRIPT (WITH MEMBERSHIP LOGIC ADDED) -->
+  <!-- SCRIPT (WITH NEW OPTION LOGIC) -->
   <script>
     feather.replace();
 
-    // AGE GATE
+    // AGE GATE + AUTO-OPEN MEMBERSHIP
     const ageGate = document.getElementById('ageGate');
     document.getElementById('ageConfirm').onclick = () => {
       ageGate.style.opacity = '0';
       setTimeout(() => ageGate.style.display = 'none', 500);
       localStorage.setItem('ageVerified', 'true');
-      // Auto-open membership after age confirm
       if (!localStorage.getItem('member')) {
         setTimeout(() => document.getElementById('membershipModal').style.display = 'block', 600);
       }
     };
     if (localStorage.getItem('ageVerified') === 'true') ageGate.style.display = 'none';
 
-    // MEMBERSHIP SYSTEM
+    // MEMBERSHIP
     const membershipModal = document.getElementById('membershipModal');
     const membershipForm = document.getElementById('membershipForm');
     const exclusiveModal = document.getElementById('exclusiveModal');
-    const openMembershipBtn = document.getElementById('openMembership');
-
-    openMembershipBtn.onclick = () => membershipModal.style.display = 'block';
-
+    document.getElementById('openMembership').onclick = () => membershipModal.style.display = 'block';
     membershipForm.onsubmit = (e) => {
       e.preventDefault();
       const fd = new FormData(membershipForm);
       localStorage.setItem('member', 'true');
       localStorage.setItem('memberName', fd.get('Full Name'));
       membershipModal.style.display = 'none';
-      exclusiveModal.style.display = 'block'; // Offer upgrade
+      exclusiveModal.style.display = 'block';
     };
-
     document.getElementById('closeMembership').onclick = () => membershipModal.style.display = 'none';
     document.getElementById('closeExclusive').onclick = () => exclusiveModal.style.display = 'none';
-    document.getElementById('skipUpgrade').onclick = (e) => {
-      e.preventDefault();
-      exclusiveModal.style.display = 'none';
-    };
+    document.getElementById('skipUpgrade').onclick = (e) => { e.preventDefault(); exclusiveModal.style.display = 'none'; };
 
-    // BLOCK CART UNTIL MEMBER
-    const isMember = () => localStorage.getItem('member') === 'true';
-
-    // CART (ONLY WORKS IF MEMBER)
+    // CART SYSTEM
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cartCount');
     const cartPage = document.getElementById('cartPage');
@@ -311,6 +326,8 @@
     const cartButton = document.getElementById('cartButton');
     const closeCart = document.getElementById('closeCart');
     const checkoutBtn = document.getElementById('checkoutBtn');
+
+    const isMember = () => localStorage.getItem('member') === 'true';
 
     const updateCart = () => {
       cartCount.textContent = cart.reduce((s, i) => s + i.qty, 0);
@@ -343,19 +360,30 @@
       feather.replace();
     };
 
-    document.querySelectorAll('.add-to-cart').forEach(img => {
-      img.onclick = () => {
-        if (!isMember()) {
-          alert("Join The Club first (free) to add items to cart!");
-          membershipModal.style.display = 'block';
-          return;
-        }
-        const card = img.closest('.product-card');
-        const data = JSON.parse(card.dataset.product);
-        const existing = cart.find(p => p.name === data.name);
-        if (existing) existing.qty++; else cart.push({ ...data, qty: 1 });
-        updateCart();
+    // OPTION SELECTION LOGIC
+    document.querySelectorAll('.option-group').forEach(group => {
+      const btns = group.querySelectorAll('.option-btn');
+      btns.forEach(btn => {
+        btn.onclick = () => {
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        };
+      });
+      // Default select first
+      btns[0].classList.add('selected');
+    });
 
+    // ADD SELECTED (STRAINS)
+    document.querySelectorAll('.add-selected').forEach(btn => {
+      btn.onclick = () => {
+        if (!isMember()) { alert("Join The Club first!"); membershipModal.style.display = 'block'; return; }
+        const group = btn.closest('div').querySelector('.option-group');
+        const selected = group.querySelector('.option-btn.selected');
+        const img = group.dataset.productImg;
+        const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img, qty: 1 };
+        const existing = cart.find(p => p.name === item.name);
+        if (existing) existing.qty++; else cart.push(item);
+        updateCart();
         const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
         const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
         const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: ${localStorage.getItem('memberName')}%0APhone: %0ADelivery: `;
@@ -363,14 +391,46 @@
       };
     });
 
+    // ADD SELECTED EDIBLES
+    document.querySelector('.add-selected-edibles').onclick = () => {
+      if (!isMember()) { alert("Join The Club first!"); membershipModal.style.display = 'block'; return; }
+      const groups = document.querySelectorAll('.product-card:last-child .option-group');
+      groups.forEach(group => {
+        const selected = group.querySelector('.option-btn.selected');
+        if (selected) {
+          const img = group.dataset.productImg;
+          const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img, qty: 1 };
+          const existing = cart.find(p => p.name === item.name);
+          if (existing) existing.qty++; else cart.push(item);
+        }
+      });
+      updateCart();
+      const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
+      const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
+      const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: ${localStorage.getItem('memberName')}%0APhone: %0ADelivery: `;
+      window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
+    };
+
+    // PRE-ROLLS (OLD CLICK ON IMAGE)
+    document.querySelectorAll('.add-to-cart').forEach(img => {
+      img.onclick = () => {
+        if (!isMember()) { alert("Join The Club first!"); membershipModal.style.display = 'block'; return; }
+        const card = img.closest('.product-card');
+        const data = JSON.parse(card.dataset.product);
+        const existing = cart.find(p => p.name === data.name);
+        if (existing) existing.qty++; else cart.push({ ...data, qty: 1 });
+        updateCart();
+        const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
+        const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
+        const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: ${localStorage.getItem('memberName')}%0APhone: %0ADelivery: `;
+        window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
+      };
+    });
+
+    // CART PAGE
     cartButton.onclick = () => {
-      if (!isMember()) {
-        alert("You must be a member to view cart. Join free now!");
-        membershipModal.style.display = 'block';
-        return;
-      }
-      cartPage.style.display = 'block';
-      renderCart();
+      if (!isMember()) { alert("You must be a member to view cart."); membershipModal.style.display = 'block'; return; }
+      cartPage.style.display = 'block'; renderCart();
     };
     closeCart.onclick = () => cartPage.style.display = 'none';
     checkoutBtn.onclick = () => {
@@ -390,7 +450,6 @@
       document.documentElement.classList.add('dark');
     }
 
-    // CLOSE MODALS
     window.onclick = (e) => {
       if (e.target === cartPage || e.target === membershipModal || e.target === exclusiveModal) {
         cartPage.style.display = 'none';
