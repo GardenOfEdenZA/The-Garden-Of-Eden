@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <!-- [ALL ORIGINAL HEAD CONTENT UNCHANGED] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a3a32" />
@@ -38,7 +37,7 @@
   </script>
 
   <!-- PWA -->
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiR2FyZGVuIE9mIEVkZW4gQ2FubmFiaXMgQ2x1YiIsInNob3J0X25hbWUiOiJFZGVuQ2x1YiIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWEzYTMyIiwidGhlbWVfY29sb3IiOiIjMWEzYTMyIiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vaS5wb3N0aW1nLmNjLzA1N0ZOdFkzL1BpY3MtQXJ0LTExLTEyLTA0LTMxLTEzLnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmciLCJwdXJwb3NlIjoibWFzay1hYmxlIn1dfQ==">
 
   <!-- TAILWIND -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -71,11 +70,14 @@
   <!-- FEATHER ICONS -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- CSS (FIXED STYLES) -->
+  <!-- STYLES -->
   <style>
     body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
     .dark body { background: #0f1e1a; color: #e0e0e0; }
-    .hero { background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; color: white; }
+    .hero { background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; color: white; position: relative; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center top, rgba(26,58,50,0.7), rgba(26,58,50,0.98)); z-index: 1; }
+    .hero > div { position: relative; z-index: 2; }
+
     .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s; }
     .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
     .product-card { transition: all 0.3s ease; border-radius: 1rem; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -96,15 +98,34 @@
     .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
 
     /* QTY & OPTIONS */
-    .qty-btn { @apply w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg font-bold; }
-    .qty-display { @apply w-12 text-center font-bold text-lg; }
-    .option-btn { @apply px-4 py-2 rounded-lg border-2 font-medium transition-all duration-200 cursor-pointer; }
-    .option-btn.selected { @apply bg-gradient-to-r from-secondary to-yellow-500 text-black border-secondary shadow-lg; }
-    .option-group { @apply flex gap-3 flex-wrap justify-center mt-4; }
+    .qty-btn { width: 40px; height: 40px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.25rem; }
+    .dark .qty-btn { background: #374151; }
+    .qty-display { width: 48px; text-align: center; font-weight: bold; font-size: 1.25rem; }
+    .option-btn { padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid #e5e7eb; font-weight: 500; transition: all 0.2s; cursor: pointer; }
+    .dark .option-btn { border-color: #374151; }
+    .option-btn.selected { background: linear-gradient(to right, #d4af37, #facc15); color: black; border-color: #d4af37; box-shadow: 0 4px 10px rgba(212,175,55,0.4); }
+    .option-group { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem; }
+
+    /* LOADING */
+    .loading { animation: spin 1s linear infinite; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid #d4af37; border-radius: 50%; width: 20px; height: 20px; display: none; margin: 8px auto 0; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    /* SUCCESS TOAST */
+    #success-message { position: fixed; top: 1rem; right: 1rem; transform: translateX(120%); opacity: 0; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); z-index: 10000; font-weight: 600; }
+    #success-message.show { transform: translateX(0); opacity: 1; }
+
+    /* LOGO */
+    @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+    .animate-float-logo { animation: float-logo 4s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); }
   </style>
 </head>
 
 <body class="min-h-screen transition-colors duration-300">
+
+  <!-- SUCCESS TOAST -->
+  <div id="success-message" class="bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center">
+    <i data-feather="check-circle" class="w-5 h-5 mr-2"></i> Item added to cart!
+  </div>
 
   <!-- AGE GATE -->
   <div id="ageGate">
@@ -126,14 +147,15 @@
   </button>
 
   <!-- HERO -->
-  <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32">
+  <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32 relative overflow-hidden">
     <div class="max-w-7xl mx-auto text-center">
+      <div class="mb-6 flex justify-center">
+        <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" alt="Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain animate-float-logo" loading="eager">
+      </div>
       <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
       <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">Where Bliss Meets Bud...</p>
       <div class="mt-8 space-x-4">
-        <button id="openMembership" class="btn-gold inline-block text-lg">
-          Join The Club (Free) <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i>
-        </button>
+        <button id="openMembership" class="btn-gold inline-block text-lg">Join The Club (Free) <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i></button>
         <a href="#menu" class="btn-gold inline-block text-lg">View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i></a>
       </div>
     </div>
@@ -144,7 +166,7 @@
     <div class="max-w-5xl mx-auto">
 
       <!-- STRAINS -->
-      <div class="product-card mb-12 overflow-hidden">
+      <div class="product-card mb-12">
         <div class="bg-gradient-to-r from-primary to-accent p-6 text-white">
           <h2 class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
         </div>
@@ -158,7 +180,10 @@
             <span class="qty-display">1</span>
             <button class="qty-btn plus">+</button>
           </div>
-          <button class="add-selected btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
+          <button class="add-selected btn-gold w-full py-3 text-lg" aria-label="Add selected strain to cart">
+            Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
+          </button>
+          <div class="loading"></div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
           <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover" loading="lazy">
@@ -176,7 +201,10 @@
               <span class="qty-display">1</span>
               <button class="qty-btn plus">+</button>
             </div>
-            <button class="add-to-cart-btn btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
+            <button class="add-to-cart-btn btn-gold w-full py-3 text-lg" aria-label="Add Stoner Days pre-rolls to cart">
+              Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
+            </button>
+            <div class="loading"></div>
           </div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
             <img src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" alt="Stoner Days" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
@@ -191,7 +219,10 @@
               <span class="qty-display">1</span>
               <button class="qty-btn plus">+</button>
             </div>
-            <button class="add-to-cart-btn btn-gold w-full py-3 text-lg">Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
+            <button class="add-to-cart-btn btn-gold w-full py-3 text-lg" aria-label="Add Greenhouse pre-rolls to cart">
+              Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
+            </button>
+            <div class="loading"></div>
           </div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
             <img src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" alt="Greenhouse" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
@@ -224,14 +255,17 @@
             <span class="qty-display">1</span>
             <button class="qty-btn plus">+</button>
           </div>
-          <button class="add-selected-edibles btn-gold w-full py-3 text-lg">Add Selected to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i></button>
+          <button class="add-selected-edibles btn-gold w-full py-3 text-lg" aria-label="Add selected edibles to cart">
+            Add Selected to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
+          </button>
+          <div class="loading"></div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
           <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Edibles" class="h-full w-full object-cover" loading="lazy">
         </div>
       </div>
 
-      <!-- CONTACT & AGE WARNING -->
+      <!-- CONTACT -->
       <div class="text-center py-12">
         <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
@@ -253,6 +287,9 @@
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Your Order</h2>
         <button id="closeCart" class="text-2xl">×</button>
+      </div>
+      <div id="joinLaterBtn" class="hidden mb-4 text-center">
+        <button class="btn-gold text-sm py-2 px-6">Join The Club (Free) <i data-feather="user-plus" class="inline w-4 h-4 ml-1"></i></button>
       </div>
       <div id="cartItems"></div>
       <div class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600 space-y-2">
@@ -283,7 +320,7 @@
     </div>
   </div>
 
-  <!-- MEMBERSHIP MODALS (MINIMIZED) -->
+  <!-- MEMBERSHIP MODALS -->
   <div id="membershipModal" style="display:none">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
@@ -308,7 +345,9 @@
       <p class="mb-4">VIP perks: early access, discounts, events.</p>
       <div class="bg-gradient-to-r from-secondary to-yellow-500 p-4 rounded-lg text-center text-black font-bold mb-4">R150/month or R1500/year</div>
       <button id="upgradeBtn" class="btn-gold w-full py-3 text-lg">Upgrade Now <i data-feather="star" class="inline w-5 h-5 ml-1"></i></button>
-      <p class="mt-4 text-sm text-center"><a href="#" id="skipUpgrade" class="text-primary underline">No thanks</a></p>
+      <p class="mt-4 text-center">
+        <button id="skipUpgrade" class="text-primary underline text-sm hover:text-secondary transition">No thanks, just join free</button>
+      </p>
     </div>
   </div>
 
@@ -318,15 +357,12 @@
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
-  <!-- SCRIPT — FULLY FIXED & TESTED -->
+  <!-- SCRIPT -->
   <script>
     feather.replace();
-
-    // STATE
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let delivery = JSON.parse(localStorage.getItem('delivery')) || { type: '', fee: 0, address: '' };
 
-    // ELEMENTS
     const cartCount = document.getElementById('cartCount');
     const cartPage = document.getElementById('cartPage');
     const cartItems = document.getElementById('cartItems');
@@ -342,8 +378,8 @@
     const confirmDelivery = document.getElementById('confirmDelivery');
     const deliveryAddress = document.getElementById('deliveryAddress');
 
-    // MEMBERSHIP
     const isMember = () => localStorage.getItem('member') === 'true';
+
     document.getElementById('ageConfirm').onclick = () => {
       document.getElementById('ageGate').style.display = 'none';
       localStorage.setItem('ageVerified', 'true');
@@ -360,7 +396,17 @@
       document.getElementById('exclusiveModal').style.display = 'block';
     };
 
-    // QUANTITY SELECTORS
+    document.getElementById('skipUpgrade').onclick = () => {
+      localStorage.setItem('member', 'true');
+      localStorage.setItem('memberName', 'Member');
+      document.getElementById('exclusiveModal').style.display = 'none';
+      alert('Welcome to the club! You can upgrade anytime.');
+    };
+
+    document.getElementById('joinLaterBtn').onclick = () => {
+      document.getElementById('membershipModal').style.display = 'block';
+    };
+
     document.querySelectorAll('.product-card').forEach(card => {
       const minus = card.querySelector('.minus');
       const plus = card.querySelector('.plus');
@@ -371,7 +417,6 @@
       }
     });
 
-    // OPTION SELECTION
     document.querySelectorAll('.option-group').forEach(group => {
       group.querySelectorAll('.option-btn').forEach(btn => {
         btn.onclick = () => {
@@ -381,31 +426,40 @@
       });
     });
 
-    // ADD TO CART
     document.querySelectorAll('.add-selected, .add-to-cart-btn, .add-selected-edibles').forEach(btn => {
+      const loading = btn.parentNode.querySelector('.loading');
       btn.onclick = () => {
         if (!isMember()) { alert("Join free first!"); document.getElementById('membershipModal').style.display = 'block'; return; }
-
+        loading.style.display = 'block';
+        btn.disabled = true;
         const card = btn.closest('.product-card');
         const qty = parseInt(card.querySelector('.qty-display').textContent);
-
+        let added = false;
         if (btn.classList.contains('add-selected')) {
           const group = card.querySelector('.option-group');
           const selected = group.querySelector('.option-btn.selected');
           const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
           addToCart(item);
+          added = true;
         } else if (btn.classList.contains('add-to-cart-btn')) {
           const data = JSON.parse(card.dataset.product);
           addToCart({ ...data, qty });
+          added = true;
         } else if (btn.classList.contains('add-selected-edibles')) {
           card.querySelectorAll('.option-group').forEach(group => {
             const selected = group.querySelector('.option-btn.selected');
             if (selected) {
               const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
               addToCart(item);
+              added = true;
             }
           });
         }
+        setTimeout(() => {
+          loading.style.display = 'none';
+          btn.disabled = false;
+          if (added) showSuccessMessage();
+        }, 600);
       };
     });
 
@@ -417,7 +471,13 @@
       updateCartUI();
     }
 
-    // CART UI
+    function showSuccessMessage() {
+      const msg = document.getElementById('success-message');
+      msg.classList.add('show');
+      feather.replace();
+      setTimeout(() => msg.classList.remove('show'), 2200);
+    }
+
     function updateCartUI() {
       const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
       const total = subtotal + delivery.fee;
@@ -425,7 +485,7 @@
       subtotalEl.textContent = `R${subtotal}`;
       deliveryFeeEl.textContent = delivery.fee ? `R${delivery.fee}` : '—';
       cartTotalEl.textContent = `R${total}`;
-
+      document.getElementById('joinLaterBtn').classList.toggle('hidden', isMember() || cart.length === 0);
       cartItems.innerHTML = cart.length ? cart.map((item, i) => `
         <div class="flex items-center gap-4 py-4 border-b dark:border-gray-600">
           <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
@@ -433,13 +493,12 @@
             <h4 class="font-medium">${item.name}</h4>
             <p class="text-sm text-gray-600 dark:text-gray-400">R${item.price} × ${item.qty}</p>
           </div>
-          <button onclick="cart.splice(${i},1); localStorage.setItem('cart', JSON.stringify(cart)); updateCartUI();" class="text-red-600"><i data-feather="trash-2" class="w-5 h-5"></i></button>
+          <button onclick="cart.splice(${i},1); localStorage.setItem(' dédi', JSON.stringify(cart)); updateCartUI();" class="text-red-600"><i data-feather="trash-2" class="w-5 h-5"></i></button>
         </div>
       `).join('') : '<p class="text-center text-gray-500 py-8">Your cart is empty.</p>';
       feather.replace();
     }
 
-    // DELIVERY
     openDelivery.onclick = () => deliveryModal.style.display = 'block';
     closeDelivery.onclick = () => deliveryModal.style.display = 'none';
     confirmDelivery.onclick = () => {
@@ -453,7 +512,6 @@
     };
     deliveryAddress.value = delivery.address;
 
-    // CHECKOUT
     checkoutBtn.onclick = () => {
       if (!delivery.address) return openDelivery.click();
       const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
@@ -462,14 +520,17 @@
       window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
     };
 
-    // CART OPEN
     cartButton.onclick = () => {
-      if (!isMember()) { alert("Join first!"); document.getElementById('membershipModal').style.display = 'block'; }
-      else { cartPage.style.display = 'block'; updateCartUI(); }
+      if (!isMember()) {
+        alert("Join free to shop!");
+        document.getElementById('membershipModal').style.display = 'block';
+      } else {
+        cartPage.style.display = 'block';
+        updateCartUI();
+      }
     };
     closeCart.onclick = () => cartPage.style.display = 'none';
 
-    // DARK MODE
     const dm = document.getElementById('darkModeToggle');
     dm.onclick = () => {
       document.documentElement.classList.toggle('dark');
@@ -479,7 +540,6 @@
       document.documentElement.classList.add('dark');
     }
 
-    // CLOSE MODALS
     window.onclick = (e) => {
       if ([cartPage, document.getElementById('membershipModal'), document.getElementById('exclusiveModal'), deliveryModal].includes(e.target)) {
         e.target.style.display = 'none';
