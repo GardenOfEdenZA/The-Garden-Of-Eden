@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <!-- META -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a3a32" />
   <meta name="description" content="The Garden Of Eden Cannabis Club | Premium THC Strains, Pre-rolls & Edibles | Cape Town | 18+ Only" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://garden-of-eden-cannabis-club.vercel.app" />
-
-  <!-- TITLE -->
   <title>The Garden Of Eden | Premium THC | Cape Town</title>
 
   <!-- FAVICON -->
@@ -39,10 +36,10 @@
   }
   </script>
 
-  <!-- PWA MANIFEST -->
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
 
-  <!-- TAILWIND CDN -->
+  <!-- TAILWIND -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -53,7 +50,6 @@
             primary: '#1a3a32',
             secondary: '#d4af37',
             accent: '#0f1e1a',
-            muted: '#f5f5f5',
             whatsapp: '#25D366',
           },
           fontFamily: {
@@ -61,18 +57,10 @@
             sans: ['Inter', 'sans-serif'],
             handwritten: ['"Dancing Script"', 'cursive'],
           },
-          animation: {
-            'pulse-slow': 'pulse 3s infinite',
-            'float': 'float 3s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            }
-          }
-        },
-      },
+          animation: { 'pulse-slow': 'pulse 3s infinite', 'float': 'float 3s ease-in-out infinite' },
+          keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } } }
+        }
+      }
     };
   </script>
 
@@ -82,198 +70,65 @@
   <!-- FEATHER ICONS -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- GOOGLE ANALYTICS (Replace ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR-ID-HERE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-YOUR-ID-HERE', { anonymize_ip: true });
-  </script>
-
-  <!-- CRITICAL CSS -->
+  <!-- CSS -->
   <style>
     body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
     .dark body { background: #0f1e1a; color: #e0e0e0; }
-    .hero { 
-      background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), 
-                  url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; 
-      color: white; 
-    }
-    .btn-gold { 
-      background: linear-gradient(135deg, #d4af37, #b8961e); 
-      color: #1a1a1a; 
-      font-weight: 600; 
-      border-radius: 0.75rem; 
-      padding: 0.75rem 1.75rem; 
-      transition: all 0.3s; 
-    }
-    .btn-gold:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 8px 20px rgba(212,175,55,0.4); 
-    }
-    .product-card { 
-      transition: all 0.3s ease; 
-      border-radius: 1rem; 
-      overflow: hidden;
-      background: white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
+    .hero { background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; color: white; }
+    .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
+    .product-card { transition: all 0.3s ease; border-radius: 1rem; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
     .dark .product-card { background: #1a2a24; }
-    .product-card:hover { 
-      transform: translateY(-6px); 
-      box-shadow: 0 16px 35px rgba(0,0,0,0.15); 
-    }
-    .whatsapp-float, .cart-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      z-index: 50;
-      animation: float 3s ease-in-out infinite;
-      transition: all 0.3s;
-    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 35px rgba(0,0,0,0.15); }
+    .whatsapp-float, .cart-float { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 50; animation: float 3s ease-in-out infinite; transition: all 0.3s; }
     .whatsapp-float { background: #25D366; color: white; }
     .cart-float { background: #1a3a32; color: white; bottom: 100px; }
     .whatsapp-float:hover, .cart-float:hover { transform: scale(1.1); }
-    .cart-count {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #d4af37;
-      color: #1a1a1a;
-      font-size: 12px;
-      font-weight: bold;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .handwritten-title {
-      font-family: 'Dancing Script', cursive;
-      font-weight: 700;
-      font-size: 4.5rem;
-      line-height: 1;
-      letter-spacing: -2px;
-    }
-    @media (max-width: 640px) {
-      .handwritten-title { font-size: 3rem; }
-    }
-    /* Age Gate */
-    #ageGate {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(15,30,26,0.98);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s;
-    }
-    .age-modal {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      max-width: 90%;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-    .dark .age-modal { background: #1a2a24; color: white; }
-    /* Cart Page */
-    #cartPage {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(15,30,26,0.98);
-      z-index: 9998;
-      overflow-y: auto;
-    }
-    .cart-content {
-      background: white;
-      margin: 2rem auto;
-      max-width: 800px;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-    .dark .cart-content { background: #1a2a24; color: white; }
-    /* Membership Modal */
-    #membershipModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(15,30,26,0.98);
-      z-index: 9997;
-      overflow-y: auto;
-    }
-    .modal-content {
-      background: white;
-      margin: 2rem auto;
-      max-width: 600px;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-    .dark .modal-content { background: #1a2a24; color: white; }
+    .cart-count { position: absolute; top: -8px; right: -8px; background: #d4af37; color: #1a1a1a; font-size: 12px; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .handwritten-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 4.5rem; line-height: 1; letter-spacing: -2px; }
+    @media (max-width: 640px) { .handwritten-title { font-size: 3rem; } }
+
+    /* Modals */
+    #ageGate, #cartPage, #membershipModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,30,26,0.98); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
+    #cartPage, #membershipModal { display: none; overflow-y: auto; }
+    .age-modal, .cart-content, .modal-content { background: white; padding: 2rem; border-radius: 1.5rem; max-width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
   </style>
 </head>
 
 <body class="min-h-screen transition-colors duration-300">
 
-  <!-- AGE GATE (18+) -->
+  <!-- AGE GATE -->
   <div id="ageGate">
-    <div class="age-modal p-8">
+    <div class="age-modal p-8 text-center">
       <h2 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4">Members Only</h2>
       <p class="text-lg mb-6">You must be 18 or older to enter The Garden Of Eden Cannabis Club.</p>
-      <button id="ageConfirm" class="btn-gold text-lg px-8 py-3">
-        I am 18+ <i data-feather="check" class="inline w-5 h-5 ml-1"></i>
-      </button>
+      <button id="ageConfirm" class="btn-gold text-lg px-8 py-3">I am 18+ <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       <p class="mt-6 text-sm text-gray-600 dark:text-gray-400">Not of legal age? Please exit.</p>
     </div>
   </div>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." 
-     class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <!-- FLOATING BUTTONS -->
+  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." class="whatsapp-float" target="_blank">
     <i data-feather="message-circle"></i>
   </a>
-
-  <!-- Cart Float -->
   <button class="cart-float" id="cartButton">
     <i data-feather="shopping-bag"></i>
     <span class="cart-count" id="cartCount">0</span>
   </button>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32">
     <div class="max-w-7xl mx-auto text-center">
-      <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">
-        THE GARDEN OF EDEN
-      </h1>
-      <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">
-        Where Bliss Meets Bud...
-      </p>
+      <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
+      <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">Where Bliss Meets Bud...</p>
       <div class="mt-8">
-        <a href="#menu" class="btn-gold inline-block text-lg">
-          View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i>
-        </a>
+        <a href="#menu" class="btn-gold inline-block text-lg">View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i></a>
       </div>
     </div>
   </section>
 
-  <!-- Menu Section -->
+  <!-- MENU -->
   <section id="menu" class="py-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-white dark:bg-accent">
     <div class="max-w-5xl mx-auto">
 
@@ -283,57 +138,31 @@
           <h2 class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
         </div>
         <div class="p-8 space-y-4">
-          <div class="flex justify-between items-center text-lg md:text-xl font-semibold">
-            <span>R120 for 10grams</span>
-          </div>
-          <div class="flex justify-between items-center text-lg md:text-xl font-semibold text-green-600">
+          <div class="flex justify-between text-lg md:text-xl font-semibold"><span>R120 for 10grams</span></div>
+          <div class="flex justify-between text-lg md:text-xl font-semibold text-green-600">
             <span>R450 for 40grams</span>
             <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">save R30</span>
           </div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img 
-            src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" 
-            alt="Alpha Express - R120 for 10g | R450 for 40g - The Garden Of Eden" 
-            class="h-full w-full object-cover transform hover:scale-105 transition duration-500 add-to-cart"
-            loading="lazy"
-          >
+          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart" loading="lazy">
         </div>
       </div>
 
-      <!-- Pre-rolled Joints -->
+      <!-- Pre-rolls -->
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="product-card" data-product='{"name":"Stoner Days™ Pre-rolls (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
-          <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white">
-            <h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3>
-          </div>
-          <div class="p-6 space-y-3">
-            <p class="text-lg font-medium">10x Outdoor Pre-rolls: <span class="text-xl font-bold text-primary">R300</span></p>
-          </div>
+        <div class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
+          <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
+          <div class="p-6"><p class="text-lg font-medium">10x Outdoor Pre-rolls: <span class="text-xl font-bold text-primary">R300</span></p></div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img 
-              src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" 
-              alt="Stoner Days™ Pre-rolls 10x - R300 - The Garden Of Eden" 
-              class="h-full w-full object-cover transform hover:scale-105 transition duration-500 add-to-cart rounded-b-lg"
-              loading="lazy"
-            >
+            <img src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" alt="Stoner Days" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart rounded-b-lg" loading="lazy">
           </div>
         </div>
-
-        <div class="product-card" data-product='{"name":"Greenhouse Pre-rolls (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg"}'>
-          <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-5 text-white">
-            <h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3>
-          </div>
-          <div class="p-6 space-y-3">
-            <p class="text-lg font-medium">5x Greenhouse Pre-rolls: <span class="text-xl font-bold text-primary">R250</span></p>
-          </div>
+        <div class="product-card" data-product='{"name":"Greenhouse (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg"}'>
+          <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
+          <div class="p-6"><p class="text-lg font-medium">5x Greenhouse Pre-rolls: <span class="text-xl font-bold text-primary">R250</span></p></div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img 
-              src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" 
-              alt="Greenhouse Pre-rolls 5x - R250 - The Garden Of Eden" 
-              class="h-full w-full object-cover transform hover:scale-105 transition duration-500 add-to-cart rounded-b-lg"
-              loading="lazy"
-            >
+            <img src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" alt="Greenhouse" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart rounded-b-lg" loading="lazy">
           </div>
         </div>
       </div>
@@ -344,35 +173,16 @@
           <h2 class="text-3xl md:text-4xl font-serif font-bold">Edibles</h2>
         </div>
         <div class="p-8 space-y-5 text-lg">
-          <div class="flex justify-between">
-            <span>Gummy bears (10mg):</span>
-            <div class="text-right">
-              <span class="block">15x <strong>R90</strong></span>
-              <span class="block text-sm">||</span>
-              <span class="block">30x <strong>R150</strong></span>
-            </div>
-          </div>
+          <div class="flex justify-between"><span>Gummy bears (10mg):</span><div class="text-right"><span class="block">15x <strong>R90</strong></span><span class="block text-sm">||</span><span class="block">30x <strong>R150</strong></span></div></div>
           <hr class="border-dashed border-gray-300 dark:border-gray-600">
-          <div class="flex justify-between">
-            <span>Leaf gummies (50mg):</span>
-            <div class="text-right">
-              <span class="block">2x <strong>R80</strong></span>
-              <span class="block text-sm">||</span>
-              <span class="block">5x <strong>R200</strong></span>
-            </div>
-          </div>
+          <div class="flex justify-between"><span>Leaf gummies (50mg):</span><div class="text-right"><span class="block">2x <strong>R80</strong></span><span class="block text-sm">||</span><span class="block">5x <strong>R200</strong></span></div></div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img 
-            src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" 
-            alt="Leaf Gummies 2x R80 | 5x R200 & Gummy Bears 15x R90 | 30x R150 - The Garden Of Eden" 
-            class="h-full w-full object-cover transform hover:scale-105 transition duration-500 add-to-cart"
-            loading="lazy"
-          >
+          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Leaf Gummies" class="h-full w-full object-cover hover:scale-105 transition duration-500 add-to-cart" loading="lazy">
         </div>
       </div>
 
-      <!-- Contact (4 Icons Only) -->
+      <!-- CONTACT -->
       <div class="text-center py-12">
         <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
@@ -383,11 +193,9 @@
         </div>
       </div>
 
-      <!-- Age Warning -->
+      <!-- AGE WARNING -->
       <div class="text-center py-8 border-t border-gray-300 dark:border-gray-700">
-        <p class="text-sm uppercase tracking-widest text-gray-600 dark:text-gray-400">
-          Not Sold To Persons Under The Age Of 18. #LegalizeIt
-        </p>
+        <p class="text-sm uppercase tracking-widest text-gray-600 dark:text-gray-400">Not Sold To Persons Under The Age Of 18. #LegalizeIt</p>
       </div>
     </div>
   </section>
@@ -401,13 +209,8 @@
       </div>
       <div id="cartItems"></div>
       <div class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600">
-        <div class="flex justify-between text-xl font-bold">
-          <span>Total:</span>
-          <span id="cartTotal">R0</span>
-        </div>
-        <button id="checkoutBtn" class="btn-gold w-full mt-4 text-lg py-3">
-          Send Order via WhatsApp <i data-feather="send" class="inline w-5 h-5 ml-1"></i>
-        </button>
+        <div class="flex justify-between text-xl font-bold"><span>Total:</span><span id="cartTotal">R0</span></div>
+        <button id="checkoutBtn" class="btn-gold w-full mt-4 text-lg py-3">Send Order via WhatsApp <i data-feather="send" class="inline w-5 h-5 ml-1"></i></button>
       </div>
     </div>
   </div>
@@ -423,42 +226,39 @@
         <input type="text" placeholder="Full Name" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="tel" placeholder="Phone Number" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="email" placeholder="Email Address" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
-        <button type="submit" class="btn-gold w-full py-3 text-lg">
-          Become a Member <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i>
-        </button>
+        <button type="submit" class="btn-gold w-full py-3 text-lg">Become a Member <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i></button>
       </form>
     </div>
   </div>
 
-  <!-- Dark Mode Toggle -->
+  <!-- DARK MODE -->
   <button id="darkModeToggle" class="fixed top-6 right-6 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg">
     <i data-feather="moon" class="w-6 h-6 hidden dark:inline"></i>
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
-  <!-- Scripts -->
+  <!-- SCRIPT -->
   <script>
     feather.replace();
 
-    // === AGE GATE ===
+    // AGE GATE
     const ageGate = document.getElementById('ageGate');
-    const ageConfirm = document.getElementById('ageConfirm');
-    ageConfirm.addEventListener('click', () => {
+    document.getElementById('ageConfirm').onclick = () => {
       ageGate.style.opacity = '0';
-      setTimeout(() => { ageGate.style.display = 'none'; }, 500);
+      setTimeout(() => ageGate.style.display = 'none', 500);
       localStorage.setItem('ageVerified', 'true');
-    });
+    };
     if (localStorage.getItem('ageVerified') === 'true') ageGate.style.display = 'none';
 
-    // === CART SYSTEM ===
+    // CART
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cartCount');
     const cartPage = document.getElementById('cartPage');
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
+    const cartButton = document.getElementById('cartButton');
     const closeCart = document.getElementById('closeCart');
     const checkoutBtn = document.getElementById('checkoutBtn');
-    const cartButton = document.getElementById('cartButton');
 
     const updateCart = () => {
       cartCount.textContent = cart.reduce((s, i) => s + i.qty, 0);
@@ -467,7 +267,7 @@
     };
 
     const renderCart = () => {
-      if (cart.length === 0) {
+      if (!cart.length) {
         cartItems.innerHTML = '<p class="text-center text-gray-500 py-8">Your cart is empty.</p>';
         cartTotal.textContent = 'R0';
         return;
@@ -480,94 +280,72 @@
             <p class="text-sm text-gray-600 dark:text-gray-400">R${item.price} each</p>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="updateQty(${i}, -1)" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">-</button>
+            <button onclick="cart[${i}].qty = Math.max(1, cart[${i}].qty - 1); updateCart();" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">-</button>
             <span class="w-8 text-center">${item.qty}</span>
-            <button onclick="updateQty(${i}, 1)" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">+</button>
+            <button onclick="cart[${i}].qty++; updateCart();" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">+</button>
           </div>
-          <button onclick="removeItem(${i})" class="text-red-600 ml-2"><i data-feather="trash-2" class="w-5 h-5"></i></button>
+          <button onclick="cart.splice(${i},1); updateCart();" class="text-red-600 ml-2"><i data-feather="trash-2" class="w-5 h-5"></i></button>
         </div>
       `).join('');
       cartTotal.textContent = 'R' + cart.reduce((s, i) => s + i.price * i.qty, 0);
       feather.replace();
     };
 
-    window.updateQty = (i, change) => {
-      cart[i].qty = Math.max(1, cart[i].qty + change);
-      updateCart();
-    };
-    window.removeItem = (i) => {
-      cart.splice(i, 1);
-      updateCart();
-    };
-
-    // Add to Cart
     document.querySelectorAll('.add-to-cart').forEach(img => {
-      img.addEventListener('click', () => {
+      img.onclick = () => {
         const card = img.closest('.product-card');
         const data = JSON.parse(card.dataset.product);
         const existing = cart.find(p => p.name === data.name);
-        if (existing) existing.qty++;
-        else cart.push({ ...data, qty: 1 });
+        if (existing) existing.qty++; else cart.push({ ...data, qty: 1 });
         updateCart();
 
-        // WhatsApp Summary
         const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
         const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
-        const msg = `Hi Garden Of Eden!%0AI'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0ADelivery: `;
+        const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0ADelivery: `;
         window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-      });
+      };
     });
 
-    // Open/Close Cart
-    cartButton.addEventListener('click', () => { cartPage.style.display = 'block'; renderCart(); });
-    closeCart.addEventListener('click', () => { cartPage.style.display = 'none'; });
-
-    // Checkout
-    checkoutBtn.addEventListener('click', () => {
+    cartButton.onclick = () => { cartPage.style.display = 'block'; renderCart(); };
+    closeCart.onclick = () => cartPage.style.display = 'none';
+    checkoutBtn.onclick = () => {
       const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
       const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
-      const msg = `Hi Garden Of Eden!%0A%0AOrder Summary:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0ADelivery Address: %0A%0AThank you!`;
+      const msg = `Order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0AAddress: `;
       window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-    });
+    };
 
-    // === MEMBERSHIP FORM ===
+    // MEMBERSHIP
     const membershipModal = document.getElementById('membershipModal');
     const membershipForm = document.getElementById('membershipForm');
-    const closeMembership = document.getElementById('closeMembership');
-
-    // Open Membership (e.g. from a button later)
-    window.openMembership = () => membershipModal.style.display = 'block';
-    closeMembership.addEventListener('click', () => membershipModal.style.display = 'none');
-    window.addEventListener('click', (e) => {
-      if (e.target === membershipModal || e.target === cartPage) {
-        membershipModal.style.display = 'none';
-        cartPage.style.display = 'none';
-      }
-    });
-
-    membershipForm.addEventListener('submit', (e) => {
+    document.getElementById('closeMembership').onclick = () => membershipModal.style.display = 'none';
+    membershipForm.onsubmit = (e) => {
       e.preventDefault();
-      const formData = new FormData(membershipForm);
-      const name = formData.get('Full Name') || formData.get('fullName');
-      const phone = formData.get('Phone Number') || formData.get('phone');
-      const email = formData.get('Email Address') || formData.get('email');
-      const msg = `New Member Application!%0A%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0A%0AWelcome to The Garden Of Eden!`;
+      const fd = new FormData(membershipForm);
+      const msg = `New Member!%0AName: ${fd.get('Full Name')}%0APhone: ${fd.get('Phone Number')}%0AEmail: ${fd.get('Email Address')}`;
       window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
       membershipModal.style.display = 'none';
       membershipForm.reset();
-    });
+    };
 
-    // === DARK MODE ===
-    const toggle = document.getElementById('darkModeToggle');
-    toggle.addEventListener('click', () => {
+    // DARK MODE
+    const dm = document.getElementById('darkModeToggle');
+    dm.onclick = () => {
       document.documentElement.classList.toggle('dark');
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    });
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    };
+    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     }
 
-    // Init
+    // CLOSE MODALS ON OUTSIDE CLICK
+    window.onclick = (e) => {
+      if (e.target === cartPage || e.target === membershipModal) {
+        cartPage.style.display = 'none';
+        membershipModal.style.display = 'none';
+      }
+    };
+
     updateCart();
   </script>
 </body>
