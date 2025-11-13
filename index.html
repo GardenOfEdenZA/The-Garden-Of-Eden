@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <!-- [ALL ORIGINAL HEAD CONTENT UNCHANGED] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1a3a32" />
@@ -70,7 +71,7 @@
   <!-- FEATHER ICONS -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <!-- CSS -->
+  <!-- CSS (UNCHANGED + NEW MODAL STYLES) -->
   <style>
     body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
     .dark body { background: #0f1e1a; color: #e0e0e0; }
@@ -88,9 +89,9 @@
     .handwritten-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 4.5rem; line-height: 1; letter-spacing: -2px; }
     @media (max-width: 640px) { .handwritten-title { font-size: 3rem; } }
 
-    /* Modals */
-    #ageGate, #cartPage, #membershipModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,30,26,0.98); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
-    #cartPage, #membershipModal { display: none; overflow-y: auto; }
+    /* MODALS */
+    #ageGate, #cartPage, #membershipModal, #exclusiveModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,30,26,0.98); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
+    #cartPage, #membershipModal, #exclusiveModal { display: none; overflow-y: auto; }
     .age-modal, .cart-content, .modal-content { background: white; padding: 2rem; border-radius: 1.5rem; max-width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
     .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
   </style>
@@ -117,18 +118,21 @@
     <span class="cart-count" id="cartCount">0</span>
   </button>
 
-  <!-- HERO -->
+  <!-- HERO + JOIN CLUB BUTTON -->
   <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32">
     <div class="max-w-7xl mx-auto text-center">
       <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
       <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">Where Bliss Meets Bud...</p>
-      <div class="mt-8">
+      <div class="mt-8 space-x-4">
+        <button id="openMembership" class="btn-gold inline-block text-lg">
+          Join The Club (Free) <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i>
+        </button>
         <a href="#menu" class="btn-gold inline-block text-lg">View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i></a>
       </div>
     </div>
   </section>
 
-  <!-- MENU -->
+  <!-- MENU (UNCHANGED) -->
   <section id="menu" class="py-16 px-6 md:px-12 lg:px-24 xl:px-32 bg-white dark:bg-accent">
     <div class="max-w-5xl mx-auto">
 
@@ -136,7 +140,7 @@
       <div class="product-card mb-12 overflow-hidden" data-product='{"name":"Alpha Express (10g)", "price":120, "img":"https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg"}'>
         <div class="bg-gradient-to-r from-primary to-accent p-6 text-white">
           <h2 class="text-3xl md:text-4xl font-serif font-bold">STRAINS: TROPICAL SKUNK & ALPHA EXPRESS</h2>
-        </div>
+13        </div>
         <div class="p-8 space-y-4">
           <div class="flex justify-between text-lg md:text-xl font-semibold"><span>R120 for 10grams</span></div>
           <div class="flex justify-between text-lg md:text-xl font-semibold text-green-600">
@@ -184,7 +188,7 @@
 
       <!-- CONTACT -->
       <div class="text-center py-12">
-        <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
+        <h3 class="text-3xl font-serif font-bold text-primary mb--bold mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
           <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition"><i data-feather="instagram"></i></a>
           <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition"><i data-feather="facebook"></i></a>
@@ -200,12 +204,12 @@
     </div>
   </section>
 
-  <!-- CART PAGE -->
+  <!-- CART PAGE (UNCHANGED) -->
   <div id="cartPage">
     <div class="cart-content">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Your Order</h2>
-        <button id="closeCart" class="text-2xl">&times;</button>
+        <button id="closeCart" class="text-2xl">×</button>
       </div>
       <div id="cartItems"></div>
       <div class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600">
@@ -215,19 +219,36 @@
     </div>
   </div>
 
-  <!-- MEMBERSHIP MODAL -->
+  <!-- FREE MEMBERSHIP MODAL (REQUIRED) -->
   <div id="membershipModal">
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-serif font-bold text-primary">Join The Club</h2>
-        <button id="closeMembership" class="text-2xl">&times;</button>
+        <h2 class="text-3xl font-serif font-bold text-primary">Join The Club — Free Membership</h2>
+        <button id="closeMembership" class="text-2xl">×</button>
       </div>
+      <p class="mb-4 text-gray-700 dark:text-gray-300">Free membership is required to shop. Join instantly — no cost, no commitment.</p>
       <form id="membershipForm" class="space-y-4">
         <input type="text" placeholder="Full Name" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="tel" placeholder="Phone Number" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
         <input type="email" placeholder="Email Address" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
-        <button type="submit" class="btn-gold w-full py-3 text-lg">Become a Member <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i></button>
+        <button type="submit" class="btn-gold w-full py-3 text-lg">Join Free <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       </form>
+    </div>
+  </div>
+
+  <!-- EXCLUSIVE MEMBERSHIP MODAL (OPTIONAL UPGRADE) -->
+  <div id="exclusiveModal">
+    <div class="modal-content">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-serif font-bold text-primary">Upgrade to Exclusive</h2>
+        <button id="closeExclusive" class="text-2xl">×</button>
+      </div>
+      <p class="mb-4">Unlock VIP perks: early access, discounts, events.</p>
+      <div class="bg-gradient-to-r from-secondary to-yellow-500 p-4 rounded-lg text-center text-black font-bold mb-4">
+        R150/month or R1500/year
+      </div>
+      <button id="upgradeBtn" class="btn-gold w-full py-3 text-lg">Upgrade Now <i data-feather="star" class="inline w-5 h-5 ml-1"></i></button>
+      <p class="mt-4 text-sm text-center"><a href="#" id="skipUpgrade" class="text-primary underline">No thanks, stay free</a></p>
     </div>
   </div>
 
@@ -237,7 +258,7 @@
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT (WITH MEMBERSHIP LOGIC ADDED) -->
   <script>
     feather.replace();
 
@@ -247,10 +268,41 @@
       ageGate.style.opacity = '0';
       setTimeout(() => ageGate.style.display = 'none', 500);
       localStorage.setItem('ageVerified', 'true');
+      // Auto-open membership after age confirm
+      if (!localStorage.getItem('member')) {
+        setTimeout(() => document.getElementById('membershipModal').style.display = 'block', 600);
+      }
     };
     if (localStorage.getItem('ageVerified') === 'true') ageGate.style.display = 'none';
 
-    // CART
+    // MEMBERSHIP SYSTEM
+    const membershipModal = document.getElementById('membershipModal');
+    const membershipForm = document.getElementById('membershipForm');
+    const exclusiveModal = document.getElementById('exclusiveModal');
+    const openMembershipBtn = document.getElementById('openMembership');
+
+    openMembershipBtn.onclick = () => membershipModal.style.display = 'block';
+
+    membershipForm.onsubmit = (e) => {
+      e.preventDefault();
+      const fd = new FormData(membershipForm);
+      localStorage.setItem('member', 'true');
+      localStorage.setItem('memberName', fd.get('Full Name'));
+      membershipModal.style.display = 'none';
+      exclusiveModal.style.display = 'block'; // Offer upgrade
+    };
+
+    document.getElementById('closeMembership').onclick = () => membershipModal.style.display = 'none';
+    document.getElementById('closeExclusive').onclick = () => exclusiveModal.style.display = 'none';
+    document.getElementById('skipUpgrade').onclick = (e) => {
+      e.preventDefault();
+      exclusiveModal.style.display = 'none';
+    };
+
+    // BLOCK CART UNTIL MEMBER
+    const isMember = () => localStorage.getItem('member') === 'true';
+
+    // CART (ONLY WORKS IF MEMBER)
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cartCount');
     const cartPage = document.getElementById('cartPage');
@@ -293,6 +345,11 @@
 
     document.querySelectorAll('.add-to-cart').forEach(img => {
       img.onclick = () => {
+        if (!isMember()) {
+          alert("Join The Club first (free) to add items to cart!");
+          membershipModal.style.display = 'block';
+          return;
+        }
         const card = img.closest('.product-card');
         const data = JSON.parse(card.dataset.product);
         const existing = cart.find(p => p.name === data.name);
@@ -301,31 +358,26 @@
 
         const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
         const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
-        const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0ADelivery: `;
+        const msg = `Hi! I'd like to order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: ${localStorage.getItem('memberName')}%0APhone: %0ADelivery: `;
         window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
       };
     });
 
-    cartButton.onclick = () => { cartPage.style.display = 'block'; renderCart(); };
+    cartButton.onclick = () => {
+      if (!isMember()) {
+        alert("You must be a member to view cart. Join free now!");
+        membershipModal.style.display = 'block';
+        return;
+      }
+      cartPage.style.display = 'block';
+      renderCart();
+    };
     closeCart.onclick = () => cartPage.style.display = 'none';
     checkoutBtn.onclick = () => {
       const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
       const total = cart.reduce((s, p) => s + p.price * p.qty, 0);
-      const msg = `Order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: %0APhone: %0AAddress: `;
+      const msg = `Order:%0A${summary}%0A%0ATotal: R${total}%0A%0AName: ${localStorage.getItem('memberName')}%0APhone: %0AAddress: `;
       window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-    };
-
-    // MEMBERSHIP
-    const membershipModal = document.getElementById('membershipModal');
-    const membershipForm = document.getElementById('membershipForm');
-    document.getElementById('closeMembership').onclick = () => membershipModal.style.display = 'none';
-    membershipForm.onsubmit = (e) => {
-      e.preventDefault();
-      const fd = new FormData(membershipForm);
-      const msg = `New Member!%0AName: ${fd.get('Full Name')}%0APhone: ${fd.get('Phone Number')}%0AEmail: ${fd.get('Email Address')}`;
-      window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-      membershipModal.style.display = 'none';
-      membershipForm.reset();
     };
 
     // DARK MODE
@@ -338,11 +390,12 @@
       document.documentElement.classList.add('dark');
     }
 
-    // CLOSE MODALS ON OUTSIDE CLICK
+    // CLOSE MODALS
     window.onclick = (e) => {
-      if (e.target === cartPage || e.target === membershipModal) {
+      if (e.target === cartPage || e.target === membershipModal || e.target === exclusiveModal) {
         cartPage.style.display = 'none';
         membershipModal.style.display = 'none';
+        exclusiveModal.style.display = 'none';
       }
     };
 
