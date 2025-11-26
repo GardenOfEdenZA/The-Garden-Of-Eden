@@ -57,8 +57,21 @@
             sans: ['Inter', 'sans-serif'],
             handwritten: ['"Dancing Script"', 'cursive'],
           },
-          animation: { 'pulse-slow': 'pulse 3s infinite', 'float': 'float 3s ease-in-out infinite' },
-          keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } } }
+          animation: { 
+            'pulse-slow': 'pulse 3s infinite', 
+            'float': 'float 3s ease-in-out infinite',
+            'fade-in': 'fadeIn 0.5s ease-in'
+          },
+          keyframes: { 
+            float: { 
+              '0%, 100%': { transform: 'translateY(0)' }, 
+              '50%': { transform: 'translateY(-10px)' } 
+            },
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            }
+          }
         }
       }
     };
@@ -72,51 +85,345 @@
 
   <!-- STYLES -->
   <style>
-    body { background: #f9f9f9; font-family: 'Inter', sans-serif; color: #222; }
-    .dark body { background: #0f1e1a; color: #e0e0e0; }
-    .hero { background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; color: white; position: relative; }
-    .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center top, rgba(26,58,50,0.7), rgba(26,58,50,0.98)); z-index: 1; }
-    .hero > div { position: relative; z-index: 2; }
+    :root {
+      --primary: #1a3a32;
+      --secondary: #d4af37;
+      --accent: #0f1e1a;
+      --whatsapp: #25D366;
+    }
 
-    .btn-gold { background: linear-gradient(135deg, #d4af37, #b8961e); color: #1a1a1a; font-weight: 600; border-radius: 0.75rem; padding: 0.75rem 1.75rem; transition: all 0.3s; }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
-    .product-card { transition: all 0.3s ease; border-radius: 1rem; overflow: hidden; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .dark .product-card { background: #1a2a24; }
-    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 35px rgba(0,0,0,0.15); }
-    .whatsapp-float, .cart-float { position: fixed; bottom: 24px; right: 24px; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 50; animation: float 3s ease-in-out infinite; transition: all 0.3s; }
-    .whatsapp-float { background: #25D366; color: white; }
-    .cart-float { background: #1a3a32; color: white; bottom: 100px; }
-    .whatsapp-float:hover, .cart-float:hover { transform: scale(1.1); }
-    .cart-count { position: absolute; top: -8px; right: -8px; background: #d4af37; color: #1a1a1a; font-size: 12px; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .handwritten-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 4.5rem; line-height: 1; letter-spacing: -2px; }
-    @media (max-width: 640px) { .handwritten-title { font-size: 3rem; } }
+    body { 
+      background: #f9f9f9; 
+      font-family: 'Inter', sans-serif; 
+      color: #222; 
+    }
+    .dark body { 
+      background: var(--accent); 
+      color: #e0e0e0; 
+    }
+    .hero { 
+      background: linear-gradient(rgba(26,58,50,0.92), rgba(26,58,50,0.95)), url('https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover; 
+      color: white; 
+      position: relative; 
+    }
+    .hero::before { 
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      background: radial-gradient(circle at center top, rgba(26,58,50,0.7), rgba(26,58,50,0.98)); 
+      z-index: 1; 
+    }
+    .hero > div { 
+      position: relative; 
+      z-index: 2; 
+    }
+
+    .btn-gold { 
+      background: linear-gradient(135deg, var(--secondary), #b8961e); 
+      color: #1a1a1a; 
+      font-weight: 600; 
+      border-radius: 0.75rem; 
+      padding: 0.75rem 1.75rem; 
+      transition: all 0.3s; 
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-gold:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 8px 20px rgba(212,175,55,0.4); 
+    }
+    .btn-gold:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .product-card { 
+      transition: all 0.3s ease; 
+      border-radius: 1rem; 
+      overflow: hidden; 
+      background: white; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    }
+    .dark .product-card { 
+      background: #1a2a24; 
+    }
+    .product-card:hover { 
+      transform: translateY(-6px); 
+      box-shadow: 0 16px 35px rgba(0,0,0,0.15); 
+    }
+    .whatsapp-float, .cart-float { 
+      position: fixed; 
+      bottom: 24px; 
+      right: 24px; 
+      width: 64px; 
+      height: 64px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 32px; 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3); 
+      z-index: 50; 
+      animation: float 3s ease-in-out infinite; 
+      transition: all 0.3s; 
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .whatsapp-float { 
+      background: var(--whatsapp); 
+      color: white; 
+    }
+    .cart-float { 
+      background: var(--primary); 
+      color: white; 
+      bottom: 100px; 
+    }
+    .whatsapp-float:hover, .cart-float:hover { 
+      transform: scale(1.1); 
+    }
+    .cart-count { 
+      position: absolute; 
+      top: -8px; 
+      right: -8px; 
+      background: var(--secondary); 
+      color: #1a1a1a; 
+      font-size: 12px; 
+      font-weight: bold; 
+      width: 20px; 
+      height: 20px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+    }
+    .handwritten-title { 
+      font-family: 'Dancing Script', cursive; 
+      font-weight: 700; 
+      font-size: 4.5rem; 
+      line-height: 1; 
+      letter-spacing: -2px; 
+    }
 
     /* MODALS */
-    #ageGate, #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,30,26,0.98); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
-    #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { display: none; overflow-y: auto; }
-    .age-modal, .cart-content, .modal-content { background: white; padding: 2rem; border-radius: 1.5rem; max-width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .dark .age-modal, .dark .cart-content, .dark .modal-content { background: #1a2a24; color: white; }
+    #ageGate, #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100vw; 
+      height: 100vh; 
+      background: rgba(15,30,26,0.98); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      z-index: 9999; 
+      transition: opacity 0.5s; 
+      padding: 1rem;
+    }
+    #cartPage, #membershipModal, #exclusiveModal, #deliveryModal { 
+      display: none; 
+      overflow-y: auto; 
+    }
+    .age-modal, .cart-content, .modal-content { 
+      background: white; 
+      padding: 2rem; 
+      border-radius: 1.5rem; 
+      max-width: 90%; 
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
+      width: 100%;
+    }
+    .dark .age-modal, .dark .cart-content, .dark .modal-content { 
+      background: #1a2a24; 
+      color: white; 
+    }
 
     /* QTY & OPTIONS */
-    .qty-btn { width: 40px; height: 40px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.25rem; }
-    .dark .qty-btn { background: #374151; }
-    .qty-display { width: 48px; text-align: center; font-weight: bold; font-size: 1.25rem; }
-    .option-btn { padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid #e5e7eb; font-weight: 500; transition: all 0.2s; cursor: pointer; }
-    .dark .option-btn { border-color: #374151; }
-    .option-btn.selected { background: linear-gradient(to right, #d4af37, #facc15); color: black; border-color: #d4af37; box-shadow: 0 4px 10px rgba(212,175,55,0.4); }
-    .option-group { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem; }
+    .qty-btn { 
+      width: 44px; 
+      height: 44px; 
+      border-radius: 50%; 
+      background: #e5e7eb; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-weight: bold; 
+      font-size: 1.25rem; 
+      cursor: pointer;
+      border: none;
+    }
+    .dark .qty-btn { 
+      background: #374151; 
+      color: white;
+    }
+    .qty-display { 
+      width: 48px; 
+      text-align: center; 
+      font-weight: bold; 
+      font-size: 1.25rem; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .option-btn { 
+      padding: 0.75rem 1.25rem; 
+      border-radius: 0.5rem; 
+      border: 2px solid #e5e7eb; 
+      font-weight: 500; 
+      transition: all 0.2s; 
+      cursor: pointer; 
+      background: white;
+      min-height: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .dark .option-btn { 
+      border-color: #374151; 
+      background: #1a2a24;
+      color: white;
+    }
+    .option-btn.selected { 
+      background: linear-gradient(to right, var(--secondary), #facc15); 
+      color: black; 
+      border-color: var(--secondary); 
+      box-shadow: 0 4px 10px rgba(212,175,55,0.4); 
+    }
+    .option-group { 
+      display: flex; 
+      gap: 0.75rem; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      margin-top: 1rem; 
+    }
 
     /* LOADING */
-    .loading { animation: spin 1s linear infinite; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid #d4af37; border-radius: 50%; width: 20px; height: 20px; display: none; margin: 8px auto 0; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loading { 
+      animation: spin 1s linear infinite; 
+      border: 3px solid rgba(255,255,255,0.3); 
+      border-top: 3px solid var(--secondary); 
+      border-radius: 50%; 
+      width: 20px; 
+      height: 20px; 
+      display: none; 
+      margin: 8px auto 0; 
+    }
+    @keyframes spin { 
+      0% { transform: rotate(0deg); } 
+      100% { transform: rotate(360deg); } 
+    }
 
     /* SUCCESS TOAST */
-    #success-message { position: fixed; top: 1rem; right: 1rem; transform: translateX(120%); opacity: 0; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); z-index: 10000; font-weight: 600; }
-    #success-message.show { transform: translateX(0); opacity: 1; }
+    #success-message { 
+      position: fixed; 
+      top: 1rem; 
+      right: 1rem; 
+      transform: translateX(120%); 
+      opacity: 0; 
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+      z-index: 10000; 
+      font-weight: 600; 
+    }
+    #success-message.show { 
+      transform: translateX(0); 
+      opacity: 1; 
+    }
+
+    /* ERROR MESSAGE */
+    #error-message {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: 10000;
+      font-weight: 600;
+      background: #ef4444;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+    }
+    #error-message.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
 
     /* LOGO */
-    @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
-    .animate-float-logo { animation: float-logo 4s ease-in-out infinite; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); }
+    @keyframes float-logo { 
+      0%, 100% { transform: translateY(0) rotate(0deg); } 
+      50% { transform: translateY(-12px) rotate(1deg); } 
+    }
+    .animate-float-logo { 
+      animation: float-logo 4s ease-in-out infinite; 
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+    }
+
+    /* FORM STYLES */
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      background: white;
+      transition: all 0.3s;
+      min-height: 44px;
+    }
+    .dark .form-input {
+      background: #1a2a24;
+      border-color: #374151;
+      color: white;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+    .form-input.error {
+      border-color: #ef4444;
+    }
+    .error-text {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) { 
+      .handwritten-title { 
+        font-size: 3rem; 
+      }
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .option-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .option-btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cart-float {
+        bottom: 100px;
+        right: 24px;
+      }
+      .whatsapp-float {
+        bottom: 24px;
+        right: 24px;
+      }
+    }
   </style>
 </head>
 
@@ -124,7 +431,12 @@
 
   <!-- SUCCESS TOAST -->
   <div id="success-message" class="bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center">
-    <i data-feather="check-circle" class="w-5 h-5 mr-2"></i> Item added to cart!
+    <i data-feather="check-circle" class="w-5 h-5 mr-2"></i> <span id="success-text">Item added to cart!</span>
+  </div>
+
+  <!-- ERROR TOAST -->
+  <div id="error-message" class="bg-red-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center">
+    <i data-feather="alert-circle" class="w-5 h-5 mr-2"></i> <span id="error-text">An error occurred</span>
   </div>
 
   <!-- AGE GATE -->
@@ -138,10 +450,10 @@
   </div>
 
   <!-- FLOATING BUTTONS -->
-  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/27812345678?text=Hi%20Garden%20Of%20Eden!%20I'd%20like%20to%20know%20more%20about%20membership." class="whatsapp-float" target="_blank" aria-label="Contact us on WhatsApp">
     <i data-feather="message-circle"></i>
   </a>
-  <button class="cart-float" id="cartButton">
+  <button class="cart-float" id="cartButton" aria-label="View cart">
     <i data-feather="shopping-bag"></i>
     <span class="cart-count" id="cartCount">0</span>
   </button>
@@ -150,11 +462,19 @@
   <section class="hero py-20 px-6 md:px-12 lg:px-24 xl:px-32 relative overflow-hidden">
     <div class="max-w-7xl mx-auto text-center">
       <div class="mb-6 flex justify-center">
-        <img src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" alt="Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain animate-float-logo" loading="eager">
+        <img 
+          src="https://i.postimg.cc/057FNtY3/Pics-Art-11-12-04-31-13.png" 
+          alt="The Garden of Eden Logo" 
+          class="w-32 h-32 md:w-40 md:h-40 object-contain animate-float-logo" 
+          loading="eager"
+          width="160"
+          height="160"
+          onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDE2MCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMWEzYTMyIi8+Cjx0ZXh0IHg9IjgwIiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+R0U8L3RleHQ+Cjwvc3ZnPgo='"
+        >
       </div>
       <h1 class="handwritten-title text-secondary mb-2 animate-pulse-slow">THE GARDEN OF EDEN</h1>
       <p class="text-lg md:text-xl font-medium tracking-wider text-white/90">Where Bliss Meets Bud...</p>
-      <div class="mt-8 space-x-4">
+      <div class="mt-8 space-x-4 hero-buttons">
         <button id="openMembership" class="btn-gold inline-block text-lg">Join The Club (Free) <i data-feather="user-plus" class="inline w-5 h-5 ml-1"></i></button>
         <a href="#menu" class="btn-gold inline-block text-lg">View Menu <i data-feather="arrow-down" class="inline w-5 h-5 ml-1"></i></a>
       </div>
@@ -172,13 +492,19 @@
         </div>
         <div class="p-8 space-y-6">
           <div class="option-group" data-product-img="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg">
-            <div class="option-btn selected" data-name="Alpha Express (10g)" data-price="120">R120 <small class="block text-xs">10g</small></div>
-            <div class="option-btn" data-name="Alpha Express (40g)" data-price="450">R450 <small class="block text-xs">40g <span class="text-green-600">Save R30</span></small></div>
+            <div class="option-btn selected" data-name="Alpha Express (10g)" data-price="120" data-id="alpha-express-10g">
+              <span>R120</span>
+              <small class="block text-xs">10g</small>
+            </div>
+            <div class="option-btn" data-name="Alpha Express (40g)" data-price="450" data-id="alpha-express-40g">
+              <span>R450</span>
+              <small class="block text-xs">40g <span class="text-green-600">Save R30</span></small>
+            </div>
           </div>
           <div class="flex items-center justify-center gap-3">
-            <button class="qty-btn minus">-</button>
+            <button class="qty-btn minus" aria-label="Decrease quantity">-</button>
             <span class="qty-display">1</span>
-            <button class="qty-btn plus">+</button>
+            <button class="qty-btn plus" aria-label="Increase quantity">+</button>
           </div>
           <button class="add-selected btn-gold w-full py-3 text-lg" aria-label="Add selected strain to cart">
             Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
@@ -186,20 +512,26 @@
           <div class="loading"></div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" alt="Alpha Express" class="h-full w-full object-cover" loading="lazy">
+          <img 
+            src="https://i.postimg.cc/QCvHP4HJ/20251112-115355.jpg" 
+            alt="Alpha Express Cannabis Strain" 
+            class="h-full w-full object-cover" 
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'text-center p-4\\'><i data-feather=\\'image\\' class=\\'w-12 h-12 mx-auto text-gray-400\\'></i><p class=\\'mt-2 text-gray-500\\'>Image not available</p></div>'; feather.replace();"
+          >
         </div>
       </div>
 
       <!-- PRE-ROLLS -->
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg"}'>
+        <div class="product-card" data-product='{"name":"Stoner Days™ (10x)", "price":300, "img":"https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg", "id":"stoner-days-10x"}'>
           <div class="bg-gradient-to-br from-amber-600 to-amber-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
           <div class="p-6 space-y-4">
             <p class="text-lg font-medium">10x Outdoor Pre-rolls: <span class="text-xl font-bold text-primary">R300</span></p>
             <div class="flex items-center justify-center gap-3">
-              <button class="qty-btn minus">-</button>
+              <button class="qty-btn minus" aria-label="Decrease quantity">-</button>
               <span class="qty-display">1</span>
-              <button class="qty-btn plus">+</button>
+              <button class="qty-btn plus" aria-label="Increase quantity">+</button>
             </div>
             <button class="add-to-cart-btn btn-gold w-full py-3 text-lg" aria-label="Add Stoner Days pre-rolls to cart">
               Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
@@ -207,17 +539,23 @@
             <div class="loading"></div>
           </div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" alt="Stoner Days" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
+            <img 
+              src="https://i.postimg.cc/nrNC5RCk/20251112-114115.jpg" 
+              alt="Stoner Days Pre-rolls" 
+              class="h-full w-full object-cover rounded-b-lg" 
+              loading="lazy"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'text-center p-4\\'><i data-feather=\\'image\\' class=\\'w-12 h-12 mx-auto text-gray-400\\'></i><p class=\\'mt-2 text-gray-500\\'>Image not available</p></div>'; feather.replace();"
+            >
           </div>
         </div>
-        <div class="product-card" data-product='{"name":"Greenhouse (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg"}'>
+        <div class="product-card" data-product='{"name":"Greenhouse (5x)", "price":250, "img":"https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg", "id":"greenhouse-5x"}'>
           <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-5 text-white"><h3 class="text-2xl font-serif font-bold">Pre-rolled Joints</h3></div>
           <div class="p-6 space-y-4">
             <p class="text-lg font-medium">5x Greenhouse Pre-rolls: <span class="text-xl font-bold text-primary">R250</span></p>
             <div class="flex items-center justify-center gap-3">
-              <button class="qty-btn minus">-</button>
+              <button class="qty-btn minus" aria-label="Decrease quantity">-</button>
               <span class="qty-display">1</span>
-              <button class="qty-btn plus">+</button>
+              <button class="qty-btn plus" aria-label="Increase quantity">+</button>
             </div>
             <button class="add-to-cart-btn btn-gold w-full py-3 text-lg" aria-label="Add Greenhouse pre-rolls to cart">
               Add to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
@@ -225,7 +563,13 @@
             <div class="loading"></div>
           </div>
           <div class="bg-gray-100 dark:bg-gray-800 h-40 md:h-48 flex items-center justify-center overflow-hidden">
-            <img src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" alt="Greenhouse" class="h-full w-full object-cover rounded-b-lg" loading="lazy">
+            <img 
+              src="https://i.postimg.cc/LsYrTxjJ/20251112-114110.jpg" 
+              alt="Greenhouse Pre-rolls" 
+              class="h-full w-full object-cover rounded-b-lg" 
+              loading="lazy"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'text-center p-4\\'><i data-feather=\\'image\\' class=\\'w-12 h-12 mx-auto text-gray-400\\'></i><p class=\\'mt-2 text-gray-500\\'>Image not available</p></div>'; feather.replace();"
+            >
           </div>
         </div>
       </div>
@@ -239,21 +583,21 @@
           <div>
             <h3 class="text-xl font-bold mb-3">Gummy Bears (10mg THC)</h3>
             <div class="option-group" data-product-img="https://i.postimg.cc/pr3p7GpB/20251112-114040.jpg">
-              <div class="option-btn selected" data-name="Gummy Bears (15x)" data-price="90">15x R90</div>
-              <div class="option-btn" data-name="Gummy Bears (30x)" data-price="150">30x R150</div>
+              <div class="option-btn selected" data-name="Gummy Bears (15x)" data-price="90" data-id="gummy-bears-15x">15x R90</div>
+              <div class="option-btn" data-name="Gummy Bears (30x)" data-price="150" data-id="gummy-bears-30x">30x R150</div>
             </div>
           </div>
           <div>
             <h3 class="text-xl font-bold mb-3">Leaf Gummies (50mg THC)</h3>
             <div class="option-group" data-product-img="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg">
-              <div class="option-btn selected" data-name="Leaf Gummies (2x)" data-price="80">2x R80</div>
-              <div class="option-btn" data-name="Leaf Gummies (5x)" data-price="200">5x R200</div>
+              <div class="option-btn selected" data-name="Leaf Gummies (2x)" data-price="80" data-id="leaf-gummies-2x">2x R80</div>
+              <div class="option-btn" data-name="Leaf Gummies (5x)" data-price="200" data-id="leaf-gummies-5x">5x R200</div>
             </div>
           </div>
           <div class="flex items-center justify-center gap-3">
-            <button class="qty-btn minus">-</button>
+            <button class="qty-btn minus" aria-label="Decrease quantity">-</button>
             <span class="qty-display">1</span>
-            <button class="qty-btn plus">+</button>
+            <button class="qty-btn plus" aria-label="Increase quantity">+</button>
           </div>
           <button class="add-selected-edibles btn-gold w-full py-3 text-lg" aria-label="Add selected edibles to cart">
             Add Selected to Cart <i data-feather="shopping-cart" class="inline w-5 h-5 ml-1"></i>
@@ -261,7 +605,13 @@
           <div class="loading"></div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 h-48 md:h-64 flex items-center justify-center overflow-hidden">
-          <img src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" alt="Edibles" class="h-full w-full object-cover" loading="lazy">
+          <img 
+            src="https://i.postimg.cc/L54dzLRQ/20251112-160834.jpg" 
+            alt="Leaf Gummies Edibles" 
+            class="h-full w-full object-cover" 
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'text-center p-4\\'><i data-feather=\\'image\\' class=\\'w-12 h-12 mx-auto text-gray-400\\'></i><p class=\\'mt-2 text-gray-500\\'>Image not available</p></div>'; feather.replace();"
+          >
         </div>
       </div>
 
@@ -269,10 +619,10 @@
       <div class="text-center py-12">
         <h3 class="text-3xl font-serif font-bold text-primary mb-6">@GardenOfEdenZA</h3>
         <div class="flex justify-center space-x-8 text-4xl">
-          <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition"><i data-feather="instagram"></i></a>
-          <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition"><i data-feather="facebook"></i></a>
-          <a href="https://x.com/GardenOfEdenZA" target="_blank" class="text-black dark:text-white hover:scale-110 transition"><i data-feather="twitter"></i></a>
-          <a href="https://wa.me/27812345678" target="_blank" class="text-whatsapp hover:scale-110 transition"><i data-feather="message-circle"></i></a>
+          <a href="https://instagram.com/GardenOfEdenZA" target="_blank" class="text-pink-600 hover:scale-110 transition" aria-label="Follow us on Instagram"><i data-feather="instagram"></i></a>
+          <a href="https://facebook.com/GardenOfEdenZA" target="_blank" class="text-blue-600 hover:scale-110 transition" aria-label="Follow us on Facebook"><i data-feather="facebook"></i></a>
+          <a href="https://x.com/GardenOfEdenZA" target="_blank" class="text-black dark:text-white hover:scale-110 transition" aria-label="Follow us on X"><i data-feather="twitter"></i></a>
+          <a href="https://wa.me/27812345678" target="_blank" class="text-whatsapp hover:scale-110 transition" aria-label="Contact us on WhatsApp"><i data-feather="message-circle"></i></a>
         </div>
       </div>
       <div class="text-center py-8 border-t border-gray-300 dark:border-gray-700">
@@ -286,7 +636,7 @@
     <div class="cart-content">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Your Order</h2>
-        <button id="closeCart" class="text-2xl">×</button>
+        <button id="closeCart" class="text-2xl" aria-label="Close cart">×</button>
       </div>
       <div id="joinLaterBtn" class="hidden mb-4 text-center">
         <button class="btn-gold text-sm py-2 px-6">Join The Club (Free) <i data-feather="user-plus" class="inline w-4 h-4 ml-1"></i></button>
@@ -307,14 +657,17 @@
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Delivery Options</h2>
-        <button id="closeDelivery" class="text-2xl">×</button>
+        <button id="closeDelivery" class="text-2xl" aria-label="Close delivery options">×</button>
       </div>
       <div class="space-y-4">
         <div class="option-group">
           <div class="option-btn selected" data-type="Local (Cape Town)" data-fee="150">Local — R150</div>
           <div class="option-btn" data-type="Nationwide" data-fee="250">Nationwide — R250</div>
         </div>
-        <input type="text" id="deliveryAddress" placeholder="Enter full delivery address" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800" required>
+        <div>
+          <input type="text" id="deliveryAddress" placeholder="Enter full delivery address" class="form-input" required>
+          <div class="error-text" id="addressError">Please enter a valid delivery address</div>
+        </div>
         <button id="confirmDelivery" class="btn-gold w-full py-3 text-lg">Confirm <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       </div>
     </div>
@@ -325,12 +678,21 @@
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Join The Club — Free</h2>
-        <button id="closeMembership" class="text-2xl">×</button>
+        <button id="closeMembership" class="text-2xl" aria-label="Close membership form">×</button>
       </div>
       <form id="membershipForm" class="space-y-4">
-        <input type="text" name="Full Name" placeholder="Full Name" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
-        <input type="tel" name="Phone Number" placeholder="Phone Number" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
-        <input type="email" name="Email Address" placeholder="Email Address" required class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800">
+        <div>
+          <input type="text" name="Full Name" placeholder="Full Name" required class="form-input">
+          <div class="error-text" id="nameError">Please enter your full name</div>
+        </div>
+        <div>
+          <input type="tel" name="Phone Number" placeholder="Phone Number" required class="form-input">
+          <div class="error-text" id="phoneError">Please enter a valid phone number</div>
+        </div>
+        <div>
+          <input type="email" name="Email Address" placeholder="Email Address" required class="form-input">
+          <div class="error-text" id="emailError">Please enter a valid email address</div>
+        </div>
         <button type="submit" class="btn-gold w-full py-3 text-lg">Join Free <i data-feather="check" class="inline w-5 h-5 ml-1"></i></button>
       </form>
     </div>
@@ -340,7 +702,7 @@
     <div class="modal-content">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-serif font-bold text-primary">Upgrade to Exclusive</h2>
-        <button id="closeExclusive" class="text-2xl">×</button>
+        <button id="closeExclusive" class="text-2xl" aria-label="Close exclusive offer">×</button>
       </div>
       <p class="mb-4">VIP perks: early access, discounts, events.</p>
       <div class="bg-gradient-to-r from-secondary to-yellow-500 p-4 rounded-lg text-center text-black font-bold mb-4">R150/month or R1500/year</div>
@@ -352,71 +714,337 @@
   </div>
 
   <!-- DARK MODE -->
-  <button id="darkModeToggle" class="fixed top-6 right-6 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg">
+  <button id="darkModeToggle" class="fixed top-6 right-6 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg" aria-label="Toggle dark mode">
     <i data-feather="moon" class="w-6 h-6 hidden dark:inline"></i>
     <i data-feather="sun" class="w-6 h-6 dark:hidden"></i>
   </button>
 
   <!-- SCRIPT -->
   <script>
+    // Configuration - In production, these would be environment variables
+    const CONFIG = {
+      BUSINESS_PHONE: '+27812345678',
+      INSTAGRAM_HANDLE: 'GardenOfEdenZA',
+      FACEBOOK_HANDLE: 'GardenOfEdenZA',
+      TWITTER_HANDLE: 'GardenOfEdenZA'
+    };
+
+    // Initialize Feather Icons
     feather.replace();
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let delivery = JSON.parse(localStorage.getItem('delivery')) || { type: '', fee: 0, address: '' };
 
-    const cartCount = document.getElementById('cartCount');
-    const cartPage = document.getElementById('cartPage');
-    const cartItems = document.getElementById('cartItems');
-    const subtotalEl = document.getElementById('subtotal');
-    const deliveryFeeEl = document.getElementById('deliveryFee');
-    const cartTotalEl = document.getElementById('cartTotal');
-    const cartButton = document.getElementById('cartButton');
-    const closeCart = document.getElementById('closeCart');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const openDelivery = document.getElementById('openDelivery');
-    const deliveryModal = document.getElementById('deliveryModal');
-    const closeDelivery = document.getElementById('closeDelivery');
-    const confirmDelivery = document.getElementById('confirmDelivery');
-    const deliveryAddress = document.getElementById('deliveryAddress');
+    // Cart Manager Class
+    class CartManager {
+      constructor() {
+        this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        this.delivery = JSON.parse(localStorage.getItem('delivery')) || { type: '', fee: 0, address: '' };
+      }
 
-    const isMember = () => localStorage.getItem('member') === 'true';
+      addItem(newItem) {
+        const existing = this.cart.find(p => p.name === newItem.name);
+        if (existing) {
+          existing.qty += newItem.qty;
+        } else {
+          this.cart.push(newItem);
+        }
+        this.saveCart();
+        this.updateUI();
+        return true;
+      }
 
+      removeItem(index) {
+        this.cart.splice(index, 1);
+        this.saveCart();
+        this.updateUI();
+      }
+
+      updateQuantity(index, newQty) {
+        if (newQty < 1) {
+          this.removeItem(index);
+        } else {
+          this.cart[index].qty = newQty;
+          this.saveCart();
+          this.updateUI();
+        }
+      }
+
+      clearCart() {
+        this.cart = [];
+        this.saveCart();
+        this.updateUI();
+      }
+
+      saveCart() {
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+      }
+
+      saveDelivery(deliveryInfo) {
+        this.delivery = deliveryInfo;
+        localStorage.setItem('delivery', JSON.stringify(this.delivery));
+      }
+
+      getCartCount() {
+        return this.cart.reduce((sum, item) => sum + item.qty, 0);
+      }
+
+      getSubtotal() {
+        return this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      }
+
+      getTotal() {
+        return this.getSubtotal() + (this.delivery.fee || 0);
+      }
+
+      updateUI() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const subtotalEl = document.getElementById('subtotal');
+        const deliveryFeeEl = document.getElementById('deliveryFee');
+        const cartTotalEl = document.getElementById('cartTotal');
+
+        // Update cart count
+        cartCount.textContent = this.getCartCount();
+
+        // Update cart items display
+        if (this.cart.length === 0) {
+          cartItems.innerHTML = '<p class="text-center text-gray-500 py-8">Your cart is empty.</p>';
+        } else {
+          cartItems.innerHTML = this.cart.map((item, i) => `
+            <div class="flex items-center gap-4 py-4 border-b dark:border-gray-600 animate-fade-in">
+              <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded" loading="lazy">
+              <div class="flex-1">
+                <h4 class="font-medium">${item.name}</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">R${item.price} × ${item.qty}</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <button onclick="cartManager.updateQuantity(${i}, ${item.qty - 1})" class="qty-btn text-sm">-</button>
+                  <span class="text-sm">${item.qty}</span>
+                  <button onclick="cartManager.updateQuantity(${i}, ${item.qty + 1})" class="qty-btn text-sm">+</button>
+                </div>
+              </div>
+              <button onclick="cartManager.removeItem(${i})" class="text-red-600 hover:text-red-800 transition" aria-label="Remove item">
+                <i data-feather="trash-2" class="w-5 h-5"></i>
+              </button>
+            </div>
+          `).join('');
+        }
+
+        // Update totals
+        subtotalEl.textContent = `R${this.getSubtotal()}`;
+        deliveryFeeEl.textContent = this.delivery.fee ? `R${this.delivery.fee}` : '—';
+        cartTotalEl.textContent = `R${this.getTotal()}`;
+
+        // Update join button visibility
+        document.getElementById('joinLaterBtn').classList.toggle('hidden', this.isMember() || this.cart.length === 0);
+
+        // Refresh icons
+        feather.replace();
+      }
+
+      isMember() {
+        return localStorage.getItem('member') === 'true';
+      }
+    }
+
+    // Form Validation Class
+    class FormValidator {
+      static validateName(name) {
+        return name.trim().length >= 2;
+      }
+
+      static validatePhone(phone) {
+        return /^[\+]?[1-9][\d]{0,15}$/.test(phone.replace(/\s/g, ''));
+      }
+
+      static validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      static validateAddress(address) {
+        return address.trim().length >= 10;
+      }
+
+      static showError(inputId, message) {
+        const input = document.getElementById(inputId);
+        const errorElement = document.getElementById(inputId + 'Error');
+        
+        if (input && errorElement) {
+          input.classList.add('error');
+          errorElement.textContent = message;
+          errorElement.style.display = 'block';
+        }
+      }
+
+      static hideError(inputId) {
+        const input = document.getElementById(inputId);
+        const errorElement = document.getElementById(inputId + 'Error');
+        
+        if (input && errorElement) {
+          input.classList.remove('error');
+          errorElement.style.display = 'none';
+        }
+      }
+    }
+
+    // UI Helper Functions
+    function showSuccessMessage(message = 'Item added to cart!') {
+      const msg = document.getElementById('success-message');
+      const text = document.getElementById('success-text');
+      
+      text.textContent = message;
+      msg.classList.add('show');
+      
+      setTimeout(() => {
+        msg.classList.remove('show');
+      }, 2200);
+    }
+
+    function showErrorMessage(message = 'An error occurred') {
+      const msg = document.getElementById('error-message');
+      const text = document.getElementById('error-text');
+      
+      text.textContent = message;
+      msg.classList.add('show');
+      
+      setTimeout(() => {
+        msg.classList.remove('show');
+      }, 3000);
+    }
+
+    function showLoading(button) {
+      const loading = button.parentNode.querySelector('.loading');
+      if (loading) {
+        loading.style.display = 'block';
+        button.disabled = true;
+      }
+    }
+
+    function hideLoading(button) {
+      const loading = button.parentNode.querySelector('.loading');
+      if (loading) {
+        loading.style.display = 'none';
+        button.disabled = false;
+      }
+    }
+
+    function sanitizeInput(input) {
+      const div = document.createElement('div');
+      div.textContent = input;
+      return div.innerHTML;
+    }
+
+    // Initialize Cart Manager
+    const cartManager = new CartManager();
+
+    // Age Verification
     document.getElementById('ageConfirm').onclick = () => {
       document.getElementById('ageGate').style.display = 'none';
-      localStorage.setItem('ageVerified', 'true');
-      if (!isMember()) document.getElementById('membershipModal').style.display = 'block';
+      localStorage.setItem('ageVerified', JSON.stringify({
+        verified: true,
+        timestamp: Date.now()
+      }));
+      
+      if (!cartManager.isMember()) {
+        document.getElementById('membershipModal').style.display = 'block';
+      }
     };
-    if (localStorage.getItem('ageVerified') === 'true') document.getElementById('ageGate').style.display = 'none';
 
+    // Check if age is already verified
+    try {
+      const ageVerified = JSON.parse(localStorage.getItem('ageVerified'));
+      if (ageVerified && ageVerified.verified) {
+        document.getElementById('ageGate').style.display = 'none';
+      }
+    } catch (e) {
+      // Fallback for old format
+      if (localStorage.getItem('ageVerified') === 'true') {
+        document.getElementById('ageGate').style.display = 'none';
+      }
+    }
+
+    // Membership Form Handling
     document.getElementById('membershipForm').onsubmit = (e) => {
       e.preventDefault();
-      const fd = new FormData(e.target);
+      
+      const formData = new FormData(e.target);
+      const name = formData.get('Full Name');
+      const phone = formData.get('Phone Number');
+      const email = formData.get('Email Address');
+      
+      let isValid = true;
+      
+      // Validate inputs
+      if (!FormValidator.validateName(name)) {
+        FormValidator.showError('deliveryAddress', 'Please enter a valid full name');
+        isValid = false;
+      } else {
+        FormValidator.hideError('deliveryAddress');
+      }
+      
+      if (!FormValidator.validatePhone(phone)) {
+        FormValidator.showError('phoneError', 'Please enter a valid phone number');
+        isValid = false;
+      } else {
+        FormValidator.hideError('phoneError');
+      }
+      
+      if (!FormValidator.validateEmail(email)) {
+        FormValidator.showError('emailError', 'Please enter a valid email address');
+        isValid = false;
+      } else {
+        FormValidator.hideError('emailError');
+      }
+      
+      if (!isValid) {
+        showErrorMessage('Please fix the form errors');
+        return;
+      }
+      
+      // Store member data
       localStorage.setItem('member', 'true');
-      localStorage.setItem('memberName', fd.get('Full Name'));
+      localStorage.setItem('memberName', sanitizeInput(name));
+      localStorage.setItem('memberPhone', sanitizeInput(phone));
+      localStorage.setItem('memberEmail', sanitizeInput(email));
+      
       document.getElementById('membershipModal').style.display = 'none';
       document.getElementById('exclusiveModal').style.display = 'block';
+      
+      showSuccessMessage('Welcome to the club!');
     };
 
+    // Upgrade and Skip Buttons
     document.getElementById('skipUpgrade').onclick = () => {
       localStorage.setItem('member', 'true');
-      localStorage.setItem('memberName', 'Member');
       document.getElementById('exclusiveModal').style.display = 'none';
-      alert('Welcome to the club! You can upgrade anytime.');
+      showSuccessMessage('Welcome to the free club! You can upgrade anytime.');
     };
 
-    document.getElementById('joinLaterBtn').onclick = () => {
-      document.getElementById('membershipModal').style.display = 'block';
+    document.getElementById('upgradeBtn').onclick = () => {
+      // In a real implementation, this would redirect to payment
+      showSuccessMessage('Redirecting to upgrade payment...');
+      setTimeout(() => {
+        document.getElementById('exclusiveModal').style.display = 'none';
+      }, 1500);
     };
 
+    // Quantity Controls
     document.querySelectorAll('.product-card').forEach(card => {
       const minus = card.querySelector('.minus');
       const plus = card.querySelector('.plus');
       const display = card.querySelector('.qty-display');
+      
       if (minus && plus && display) {
-        minus.onclick = () => display.textContent = Math.max(1, parseInt(display.textContent) - 1);
-        plus.onclick = () => display.textContent = parseInt(display.textContent) + 1;
+        minus.onclick = () => {
+          const current = parseInt(display.textContent);
+          display.textContent = Math.max(1, current - 1);
+        };
+        
+        plus.onclick = () => {
+          const current = parseInt(display.textContent);
+          display.textContent = current + 1;
+        };
       }
     });
 
+    // Option Selection
     document.querySelectorAll('.option-group').forEach(group => {
       group.querySelectorAll('.option-btn').forEach(btn => {
         btn.onclick = () => {
@@ -426,127 +1054,222 @@
       });
     });
 
+    // Add to Cart Functionality
     document.querySelectorAll('.add-selected, .add-to-cart-btn, .add-selected-edibles').forEach(btn => {
-      const loading = btn.parentNode.querySelector('.loading');
-      btn.onclick = () => {
-        if (!isMember()) { alert("Join free first!"); document.getElementById('membershipModal').style.display = 'block'; return; }
-        loading.style.display = 'block';
-        btn.disabled = true;
-        const card = btn.closest('.product-card');
-        const qty = parseInt(card.querySelector('.qty-display').textContent);
-        let added = false;
-        if (btn.classList.contains('add-selected')) {
-          const group = card.querySelector('.option-group');
-          const selected = group.querySelector('.option-btn.selected');
-          const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
-          addToCart(item);
-          added = true;
-        } else if (btn.classList.contains('add-to-cart-btn')) {
-          const data = JSON.parse(card.dataset.product);
-          addToCart({ ...data, qty });
-          added = true;
-        } else if (btn.classList.contains('add-selected-edibles')) {
-          card.querySelectorAll('.option-group').forEach(group => {
-            const selected = group.querySelector('.option-btn.selected');
-            if (selected) {
-              const item = { name: selected.dataset.name, price: parseInt(selected.dataset.price), img: group.dataset.productImg, qty };
-              addToCart(item);
-              added = true;
-            }
-          });
+      btn.onclick = async () => {
+        // Check membership
+        if (!cartManager.isMember()) {
+          showErrorMessage('Please join the club first!');
+          document.getElementById('membershipModal').style.display = 'block';
+          return;
         }
-        setTimeout(() => {
-          loading.style.display = 'none';
-          btn.disabled = false;
-          if (added) showSuccessMessage();
-        }, 600);
+        
+        showLoading(btn);
+        
+        try {
+          const card = btn.closest('.product-card');
+          const qty = parseInt(card.querySelector('.qty-display').textContent);
+          let added = false;
+          
+          if (btn.classList.contains('add-selected')) {
+            const group = card.querySelector('.option-group');
+            const selected = group.querySelector('.option-btn.selected');
+            const item = {
+              name: selected.dataset.name,
+              price: parseInt(selected.dataset.price),
+              img: group.dataset.productImg,
+              id: selected.dataset.id,
+              qty: qty
+            };
+            added = cartManager.addItem(item);
+          } else if (btn.classList.contains('add-to-cart-btn')) {
+            const data = JSON.parse(card.dataset.product);
+            added = cartManager.addItem({ ...data, qty: qty });
+          } else if (btn.classList.contains('add-selected-edibles')) {
+            card.querySelectorAll('.option-group').forEach(group => {
+              const selected = group.querySelector('.option-btn.selected');
+              if (selected) {
+                const item = {
+                  name: selected.dataset.name,
+                  price: parseInt(selected.dataset.price),
+                  img: group.dataset.productImg,
+                  id: selected.dataset.id,
+                  qty: qty
+                };
+                added = cartManager.addItem(item) || added;
+              }
+            });
+          }
+          
+          if (added) {
+            showSuccessMessage();
+          }
+        } catch (error) {
+          console.error('Error adding to cart:', error);
+          showErrorMessage('Failed to add item to cart');
+        } finally {
+          hideLoading(btn);
+        }
       };
     });
 
-    function addToCart(newItem) {
-      const existing = cart.find(p => p.name === newItem.name);
-      if (existing) existing.qty += newItem.qty;
-      else cart.push(newItem);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartUI();
-    }
-
-    function showSuccessMessage() {
-      const msg = document.getElementById('success-message');
-      msg.classList.add('show');
-      feather.replace();
-      setTimeout(() => msg.classList.remove('show'), 2200);
-    }
-
-    function updateCartUI() {
-      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-      const total = subtotal + delivery.fee;
-      cartCount.textContent = cart.reduce((s, i) => s + i.qty, 0);
-      subtotalEl.textContent = `R${subtotal}`;
-      deliveryFeeEl.textContent = delivery.fee ? `R${delivery.fee}` : '—';
-      cartTotalEl.textContent = `R${total}`;
-      document.getElementById('joinLaterBtn').classList.toggle('hidden', isMember() || cart.length === 0);
-      cartItems.innerHTML = cart.length ? cart.map((item, i) => `
-        <div class="flex items-center gap-4 py-4 border-b dark:border-gray-600">
-          <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
-          <div class="flex-1">
-            <h4 class="font-medium">${item.name}</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-400">R${item.price} × ${item.qty}</p>
-          </div>
-          <button onclick="cart.splice(${i},1); localStorage.setItem(' dédi', JSON.stringify(cart)); updateCartUI();" class="text-red-600"><i data-feather="trash-2" class="w-5 h-5"></i></button>
-        </div>
-      `).join('') : '<p class="text-center text-gray-500 py-8">Your cart is empty.</p>';
-      feather.replace();
-    }
-
-    openDelivery.onclick = () => deliveryModal.style.display = 'block';
-    closeDelivery.onclick = () => deliveryModal.style.display = 'none';
-    confirmDelivery.onclick = () => {
-      const selected = deliveryModal.querySelector('.option-btn.selected');
-      const address = deliveryAddress.value.trim();
-      if (!address) return alert("Enter address");
-      delivery = { type: selected.dataset.type, fee: parseInt(selected.dataset.fee), address };
-      localStorage.setItem('delivery', JSON.stringify(delivery));
-      deliveryModal.style.display = 'none';
-      updateCartUI();
-    };
-    deliveryAddress.value = delivery.address;
-
-    checkoutBtn.onclick = () => {
-      if (!delivery.address) return openDelivery.click();
-      const summary = cart.map(p => `${p.name} x${p.qty}`).join('%0A');
-      const subtotal = cart.reduce((s, p) => s + p.price * p.qty, 0);
-      const msg = `Order:%0A${summary}%0A%0ASubtotal: R${subtotal}%0ADelivery (${delivery.type}): R${delivery.fee}%0ATotal: R${subtotal + delivery.fee}%0A%0AName: ${localStorage.getItem('memberName')}%0AAddress: ${delivery.address}`;
-      window.open(`https://wa.me/27812345678?text=${msg}`, '_blank');
-    };
+    // Cart Management
+    const cartPage = document.getElementById('cartPage');
+    const cartButton = document.getElementById('cartButton');
+    const closeCart = document.getElementById('closeCart');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const openDelivery = document.getElementById('openDelivery');
 
     cartButton.onclick = () => {
-      if (!isMember()) {
-        alert("Join free to shop!");
+      if (!cartManager.isMember()) {
+        showErrorMessage('Please join the club to shop!');
         document.getElementById('membershipModal').style.display = 'block';
       } else {
         cartPage.style.display = 'block';
-        updateCartUI();
+        cartManager.updateUI();
       }
     };
-    closeCart.onclick = () => cartPage.style.display = 'none';
 
-    const dm = document.getElementById('darkModeToggle');
-    dm.onclick = () => {
-      document.documentElement.classList.toggle('dark');
-      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    closeCart.onclick = () => {
+      cartPage.style.display = 'none';
     };
-    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    }
 
+    // Delivery Management
+    const deliveryModal = document.getElementById('deliveryModal');
+    const closeDelivery = document.getElementById('closeDelivery');
+    const confirmDelivery = document.getElementById('confirmDelivery');
+    const deliveryAddress = document.getElementById('deliveryAddress');
+
+    openDelivery.onclick = () => {
+      deliveryModal.style.display = 'block';
+      deliveryAddress.value = cartManager.delivery.address || '';
+    };
+
+    closeDelivery.onclick = () => {
+      deliveryModal.style.display = 'none';
+    };
+
+    confirmDelivery.onclick = () => {
+      const selected = deliveryModal.querySelector('.option-btn.selected');
+      const address = deliveryAddress.value.trim();
+      
+      if (!FormValidator.validateAddress(address)) {
+        FormValidator.showError('deliveryAddress', 'Please enter a complete delivery address (at least 10 characters)');
+        return;
+      }
+      
+      FormValidator.hideError('deliveryAddress');
+      
+      const deliveryInfo = {
+        type: selected.dataset.type,
+        fee: parseInt(selected.dataset.fee),
+        address: sanitizeInput(address)
+      };
+      
+      cartManager.saveDelivery(deliveryInfo);
+      deliveryModal.style.display = 'none';
+      cartManager.updateUI();
+      showSuccessMessage('Delivery address saved!');
+    };
+
+    // Checkout
+    checkoutBtn.onclick = () => {
+      if (!cartManager.delivery.address) {
+        showErrorMessage('Please set delivery address first');
+        openDelivery.click();
+        return;
+      }
+      
+      if (cartManager.cart.length === 0) {
+        showErrorMessage('Your cart is empty');
+        return;
+      }
+      
+      const summary = cartManager.cart.map(p => `${p.name} x${p.qty}`).join('%0A');
+      const subtotal = cartManager.getSubtotal();
+      const memberName = localStorage.getItem('memberName') || 'Member';
+      
+      const msg = `Order from The Garden Of Eden:%0A%0A${summary}%0A%0ASubtotal: R${subtotal}%0ADelivery (${cartManager.delivery.type}): R${cartManager.delivery.fee}%0ATotal: R${cartManager.getTotal()}%0A%0AName: ${memberName}%0AAddress: ${cartManager.delivery.address}`;
+      
+      window.open(`https://wa.me/${CONFIG.BUSINESS_PHONE}?text=${msg}`, '_blank');
+    };
+
+    // Modal Management
+    const modals = [
+      { id: 'membershipModal', closeId: 'closeMembership' },
+      { id: 'exclusiveModal', closeId: 'closeExclusive' },
+      { id: 'deliveryModal', closeId: 'closeDelivery' },
+      { id: 'cartPage', closeId: 'closeCart' }
+    ];
+
+    modals.forEach(modal => {
+      const modalElement = document.getElementById(modal.id);
+      const closeButton = document.getElementById(modal.closeId);
+      
+      if (closeButton) {
+        closeButton.onclick = () => {
+          modalElement.style.display = 'none';
+        };
+      }
+    });
+
+    // Close modals when clicking outside
     window.onclick = (e) => {
-      if ([cartPage, document.getElementById('membershipModal'), document.getElementById('exclusiveModal'), deliveryModal].includes(e.target)) {
+      if (e.target.id === 'cartPage' || e.target.id === 'membershipModal' || 
+          e.target.id === 'exclusiveModal' || e.target.id === 'deliveryModal') {
         e.target.style.display = 'none';
       }
     };
 
-    updateCartUI();
+    // Open Membership Modal
+    document.getElementById('openMembership').onclick = () => {
+      document.getElementById('membershipModal').style.display = 'block';
+    };
+
+    // Join Later Button
+    document.getElementById('joinLaterBtn').onclick = () => {
+      document.getElementById('membershipModal').style.display = 'block';
+    };
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.onclick = () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      feather.replace();
+    };
+
+    // Initialize dark mode
+    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+
+    // Initialize UI
+    cartManager.updateUI();
+
+    // Error boundary for images
+    document.addEventListener('error', function(e) {
+      if (e.target.tagName === 'IMG') {
+        console.warn('Image failed to load:', e.target.src);
+      }
+    }, true);
+
+    // Service Worker Registration (for PWA)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        // In a real implementation, you would register your service worker here
+        console.log('PWA ready for service worker registration');
+      });
+    }
+
+    // Handle offline/online status
+    window.addEventListener('online', function() {
+      showSuccessMessage('Back online!');
+    });
+
+    window.addEventListener('offline', function() {
+      showErrorMessage('You are currently offline. Some features may not work.');
+    });
   </script>
 </body>
 </html>
